@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kleur Opties — GetOpenClaw</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: system-ui, sans-serif; background: #f5f5f5; padding: 2rem; }
+        h1 { text-align: center; margin-bottom: 2rem; }
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; max-width: 1200px; margin: 0 auto; }
+        .option { background: #fff; border-radius: 12px; padding: 1.5rem; box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
+        .option h3 { margin-bottom: 1rem; }
+        .badge { display: inline-block; padding: 0.5rem 1rem; border-radius: 20px; font-size: 0.85rem; font-weight: 500; margin-bottom: 1rem; color: #fff; }
+        .btn { display: block; width: 100%; padding: 1rem; border: none; border-radius: 8px; font-size: 1rem; font-weight: 600; color: #fff; cursor: pointer; margin-top: 1rem; }
+        
+        /* Optie 1: Koraal/Warm */
+        .coral .badge { background: #e76f51; }
+        .coral .btn { background: #e76f51; }
+        
+        /* Optie 2: Teal/Zeegroen */
+        .teal .badge { background: #0d9488; }
+        .teal .btn { background: #0d9488; }
+        
+        /* Optie 3: Zonnig geel-oranje */
+        .sunny .badge { background: #f59e0b; }
+        .sunny .btn { background: #f59e0b; }
+        
+        /* Optie 4: Fris blauw */
+        .freshblue .badge { background: #3b82f6; }
+        .freshblue .btn { background: #3b82f6; }
+        
+        /* Optie 5: Groen natuur */
+        .nature .badge { background: #22c55e; }
+        .nature .btn { background: #22c55e; }
+        
+        /* Optie 6: Rood (OpenClaw lobster) */
+        .lobster .badge { background: #dc2626; }
+        .lobster .btn { background: #dc2626; }
+        
+        /* Optie 7: Warm oranje */
+        .orange .badge { background: #ea580c; }
+        .orange .btn { background: #ea580c; }
+        
+        /* Optie 8: Donkerblauw + geel accent */
+        .navy .badge { background: #1e3a5f; }
+        .navy .btn { background: #eab308; color: #1e3a5f; }
+    </style>
+</head>
+<body>
+    <h1>Kleur Opties — Levendig & Uitnodigend</h1>
+    
+    <div class="grid">
+        <div class="option coral">
+            <h3>1. Koraal (warm, vriendelijk)</h3>
+            <div class="badge">📺 NPO1-uitzending Eva Jinek</div>
+            <p>Warme, uitnodigende kleur. Vriendelijk maar niet schreeuwerig.</p>
+            <button class="btn">Ja, informeer mij over de mogelijkheden</button>
+        </div>
+        
+        <div class="option teal">
+            <h3>2. Teal (fris, modern)</h3>
+            <div class="badge">📺 NPO1-uitzending Eva Jinek</div>
+            <p>Fris en modern. Staat voor innovatie zonder AI-cliché.</p>
+            <button class="btn">Ja, informeer mij over de mogelijkheden</button>
+        </div>
+        
+        <div class="option sunny">
+            <h3>3. Zonnig (energie, optimisme)</h3>
+            <div class="badge">📺 NPO1-uitzending Eva Jinek</div>
+            <p>Energie en optimisme. Valt op, nodigt uit.</p>
+            <button class="btn">Ja, informeer mij over de mogelijkheden</button>
+        </div>
+        
+        <div class="option freshblue">
+            <h3>4. Fris blauw (vertrouwd, helder)</h3>
+            <div class="badge">📺 NPO1-uitzending Eva Jinek</div>
+            <p>Betrouwbaar maar niet saai. Veel gebruikt door tech.</p>
+            <button class="btn">Ja, informeer mij over de mogelijkheden</button>
+        </div>
+        
+        <div class="option nature">
+            <h3>5. Groen (groei, actie)</h3>
+            <div class="badge">📺 NPO1-uitzending Eva Jinek</div>
+            <p>Staat voor groei en "go". Positief, uitnodigend.</p>
+            <button class="btn">Ja, informeer mij over de mogelijkheden</button>
+        </div>
+        
+        <div class="option lobster">
+            <h3>6. Lobster rood (OpenClaw branding)</h3>
+            <div class="badge">📺 NPO1-uitzending Eva Jinek</div>
+            <p>Past bij het OpenClaw logo. Opvallend, krachtig.</p>
+            <button class="btn">Ja, informeer mij over de mogelijkheden</button>
+        </div>
+        
+        <div class="option orange">
+            <h3>7. Warm oranje (energie, actie)</h3>
+            <div class="badge">📺 NPO1-uitzending Eva Jinek</div>
+            <p>Activerend, warm. Nodigt uit tot actie.</p>
+            <button class="btn">Ja, informeer mij over de mogelijkheden</button>
+        </div>
+        
+        <div class="option navy">
+            <h3>8. Navy + geel accent</h3>
+            <div class="badge">📺 NPO1-uitzending Eva Jinek</div>
+            <p>Zakelijk maar met opvallende CTA. Contrast werkt.</p>
+            <button class="btn">Ja, informeer mij over de mogelijkheden</button>
+        </div>
+    </div>
+</body>
+</html>
