@@ -3,250 +3,252 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>OpenClaw - Jouw AI Assistent op een Veilige Server</title>
-    <meta name="description" content="Zoals gezien op Eva Jinek. AI die je computer bedient - maar dan veilig, op een remote server. Geen risico voor je persoonlijke data.">
+    <title>OpenClaw — Jouw Digitale Medewerker, Veilig Opgezet</title>
+    <meta name="description" content="Zoals besproken op Eva Jinek. Wij richten je digitale werkplek in. Jij ontdekt wat mogelijk is. Veilig, op een aparte server.">
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-            background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
-            color: #1a202c;
-            min-height: 100vh;
-            line-height: 1.6;
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+            background: #fafafa;
+            color: #222;
+            line-height: 1.7;
+            font-size: 18px;
         }
         .container {
-            max-width: 800px;
+            max-width: 680px;
             margin: 0 auto;
-            padding: 2rem;
+            padding: 3rem 1.5rem;
         }
         .badge {
             display: inline-block;
-            background: #e53e3e;
-            color: white;
-            padding: 0.5rem 1rem;
-            border-radius: 50px;
-            font-size: 0.9rem;
-            font-weight: 600;
-            margin-bottom: 1.5rem;
-            animation: pulse 2s infinite;
-        }
-        @keyframes pulse {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0.85; }
+            background: #1a1a1a;
+            color: #fff;
+            padding: 0.4rem 0.9rem;
+            border-radius: 4px;
+            font-size: 0.85rem;
+            font-weight: 500;
+            margin-bottom: 2rem;
+            letter-spacing: 0.02em;
         }
         h1 {
-            font-size: 2.5rem;
-            margin-bottom: 1rem;
-            background: linear-gradient(90deg, #2563eb, #059669);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-        .subtitle {
-            font-size: 1.3rem;
-            color: #4a5568;
-            margin-bottom: 2rem;
-        }
-        .subtitle strong {
-            color: #1a202c;
-        }
-        .quote-box {
-            background: #fff5f5;
-            border-left: 4px solid #e53e3e;
-            padding: 1.5rem;
-            margin: 2rem 0;
-            border-radius: 0 8px 8px 0;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
-        }
-        .quote-box .quote {
-            font-style: italic;
-            font-size: 1.1rem;
-            margin-bottom: 0.5rem;
-            color: #2d3748;
-        }
-        .quote-box .author {
-            color: #718096;
-            font-size: 0.9rem;
-        }
-        .solution-box {
-            background: #f0fff4;
-            border-left: 4px solid #059669;
-            padding: 1.5rem;
-            margin: 2rem 0;
-            border-radius: 0 8px 8px 0;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
-        }
-        .solution-box h3 {
-            color: #047857;
-            margin-bottom: 0.5rem;
-        }
-        .solution-box p {
-            color: #2d3748;
-        }
-        .features {
-            display: grid;
-            gap: 1rem;
-            margin: 2rem 0;
-        }
-        .feature {
-            background: #fff;
-            padding: 1rem 1.5rem;
-            border-radius: 8px;
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
-            border: 1px solid #e2e8f0;
-        }
-        .feature-icon {
-            font-size: 1.5rem;
-        }
-        .cta-section {
-            text-align: center;
-            margin: 3rem 0;
-            padding: 2rem;
-            background: #fff;
-            border-radius: 16px;
-            box-shadow: 0 4px 16px rgba(0,0,0,0.08);
-            border: 1px solid #e2e8f0;
-        }
-        .cta-section h2 {
-            margin-bottom: 1rem;
-            color: #1a202c;
-        }
-        .btn {
-            display: inline-block;
-            padding: 1rem 2rem;
-            font-size: 1.1rem;
+            font-size: 2.2rem;
             font-weight: 600;
-            text-decoration: none;
-            border-radius: 8px;
-            margin: 0.5rem;
-            transition: transform 0.2s, box-shadow 0.2s;
+            margin-bottom: 1.2rem;
+            color: #111;
+            line-height: 1.3;
         }
-        .btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+        .intro {
+            font-size: 1.15rem;
+            color: #444;
+            margin-bottom: 2.5rem;
         }
-        .btn-primary {
-            background: linear-gradient(90deg, #2563eb, #059669);
-            color: #fff;
-        }
-        .btn-secondary {
-            background: #f7fafc;
-            color: #2d3748;
-            border: 2px solid #e2e8f0;
-        }
-        .price {
-            font-size: 2rem;
-            font-weight: 700;
-            color: #059669;
-            margin: 1rem 0;
-        }
-        .price span {
-            font-size: 1rem;
-            color: #718096;
-            font-weight: 400;
-        }
-        .info-box {
+        .quote {
             background: #fff;
-            padding: 1.5rem;
+            border: 1px solid #e5e5e5;
             border-radius: 8px;
+            padding: 1.5rem;
             margin: 2rem 0;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
-            border: 1px solid #e2e8f0;
         }
-        .info-box h3 {
-            margin-bottom: 1rem;
-            color: #2d3748;
-        }
-        .info-box ul {
-            margin-left: 1.5rem;
-            color: #4a5568;
-        }
-        .info-box li {
+        .quote p {
+            font-style: italic;
+            color: #333;
             margin-bottom: 0.5rem;
+        }
+        .quote .author {
+            font-size: 0.9rem;
+            color: #666;
+            font-style: normal;
+        }
+        .section {
+            margin: 2.5rem 0;
+        }
+        .section h2 {
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: #111;
+        }
+        .section p {
+            color: #444;
+        }
+        .highlight-box {
+            background: #f0f7f0;
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin: 2rem 0;
+        }
+        .highlight-box h3 {
+            font-size: 1.1rem;
+            margin-bottom: 0.8rem;
+            color: #1a5a1a;
+        }
+        .signup-box {
+            background: #fff;
+            border: 2px solid #111;
+            border-radius: 12px;
+            padding: 2rem;
+            margin: 3rem 0;
+            text-align: center;
+        }
+        .signup-box h2 {
+            font-size: 1.4rem;
+            margin-bottom: 0.5rem;
+        }
+        .signup-box .limited {
+            color: #666;
+            font-size: 0.95rem;
+            margin-bottom: 1.5rem;
+        }
+        .signup-box .limited strong {
+            color: #c41e3a;
+        }
+        .form-group {
+            margin-bottom: 1rem;
+        }
+        .form-group input {
+            width: 100%;
+            padding: 0.9rem 1rem;
+            font-size: 1rem;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            background: #fafafa;
+        }
+        .form-group input:focus {
+            outline: none;
+            border-color: #111;
+            background: #fff;
+        }
+        .btn-submit {
+            width: 100%;
+            padding: 1rem;
+            font-size: 1.05rem;
+            font-weight: 600;
+            background: #111;
+            color: #fff;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+        .btn-submit:hover {
+            background: #333;
+        }
+        .promise {
+            font-size: 0.85rem;
+            color: #666;
+            margin-top: 1rem;
+        }
+        .what-others-do {
+            background: #fff;
+            border: 1px solid #e5e5e5;
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin: 2rem 0;
+        }
+        .what-others-do h3 {
+            font-size: 1rem;
+            margin-bottom: 1rem;
+            color: #111;
+        }
+        .what-others-do ul {
+            list-style: none;
+            color: #555;
+        }
+        .what-others-do li {
+            padding: 0.4rem 0;
+            padding-left: 1.5rem;
+            position: relative;
+        }
+        .what-others-do li:before {
+            content: "→";
+            position: absolute;
+            left: 0;
+            color: #999;
         }
         footer {
+            margin-top: 4rem;
+            padding-top: 2rem;
+            border-top: 1px solid #eee;
             text-align: center;
-            padding: 2rem;
-            color: #718096;
+            color: #888;
             font-size: 0.9rem;
         }
         footer a {
-            color: #2563eb;
-            text-decoration: none;
+            color: #555;
         }
         @media (max-width: 600px) {
-            h1 { font-size: 1.8rem; }
-            .subtitle { font-size: 1.1rem; }
-            .container { padding: 1rem; }
+            body { font-size: 16px; }
+            h1 { font-size: 1.7rem; }
+            .container { padding: 2rem 1rem; }
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <div class="badge">📺 Zoals gezien op Eva Jinek - 3 feb 2026</div>
+        <div class="badge">📺 Naar aanleiding van Eva Jinek — 3 feb 2026</div>
         
-        <h1>AI Die Je Computer Bedient</h1>
-        <p class="subtitle">Restaurant reserveren, kaartjes boeken, e-mails beantwoorden — gewoon via WhatsApp. Maar dan <strong>veilig</strong>.</p>
+        <h1>Je eigen digitale medewerker. Veilig opgezet, klaar om te ontdekken.</h1>
+        
+        <p class="intro">
+            Alexander liet het zien op tv. Een assistent die taken uitvoert terwijl jij andere dingen doet. 
+            Fascinerend — en volgens hem "nog te gevaarlijk voor dagelijks gebruik."
+        </p>
 
-        <div class="quote-box">
-            <p class="quote">"Dit is super gevaarlijke technologie... Doe dit niet! Ik zet dit op een aparte computer die geen verbinding heeft met mijn echte e-mail."</p>
-            <p class="author">— Alexander Klöpping, Eva Jinek</p>
+        <div class="quote">
+            <p>"Ik zet dit op een aparte computer die geen verbinding heeft met mijn echte e-mail."</p>
+            <span class="author">— Alexander Klöpping, Eva Jinek</span>
         </div>
 
-        <div class="solution-box">
-            <h3>✅ De oplossing: een remote server</h3>
-            <p>Draai je AI-assistent op een veilige cloud server. Geen toegang tot je persoonlijke computer. Geen risico voor je bankgegevens. Experimenteer veilig voor een paar euro per maand.</p>
+        <div class="section">
+            <h2>Precies. Daarom een aparte server.</h2>
+            <p>
+                Wij richten een veilige werkplek voor je in. Geen toegang tot je persoonlijke computer. 
+                Geen risico's met je eigen accounts. Gewoon een plek om te ontdekken wat dit voor jou kan betekenen.
+            </p>
         </div>
 
-        <h2 style="margin: 2rem 0 1rem; color: #1a202c;">Wat kan het?</h2>
-        <div class="features">
-            <div class="feature">
-                <span class="feature-icon">🎫</span>
-                <span>Kaartjes boeken voor concerten en events</span>
-            </div>
-            <div class="feature">
-                <span class="feature-icon">🍽️</span>
-                <span>Restaurants reserveren (belt zelf als het moet!)</span>
-            </div>
-            <div class="feature">
-                <span class="feature-icon">📧</span>
-                <span>E-mails lezen, samenvatten en beantwoorden</span>
-            </div>
-            <div class="feature">
-                <span class="feature-icon">📅</span>
-                <span>Agenda beheren en afspraken plannen</span>
-            </div>
-            <div class="feature">
-                <span class="feature-icon">🛒</span>
-                <span>Online boodschappen en bestellingen</span>
-            </div>
-            <div class="feature">
-                <span class="feature-icon">💬</span>
-                <span>Bedienen via WhatsApp of Telegram</span>
-            </div>
+        <div class="highlight-box">
+            <h3>Wij zijn de IT-afdeling voor je digitale collega</h3>
+            <p>
+                Je hoeft niets technisch te weten. Wij regelen de server, de configuratie, alles. 
+                Jij krijgt een werkende omgeving en kunt direct aan de slag.
+            </p>
         </div>
 
-        <div class="cta-section">
-            <h2>Start vandaag nog</h2>
-            <p style="color: #718096; margin-bottom: 1rem;">Wij zetten alles voor je klaar op een veilige server</p>
-            <div class="price">€149 <span>eenmalige setup</span></div>
-            <p style="color: #718096; margin-bottom: 1.5rem;">+ ~€30/maand serverkosten</p>
-            <a href="https://docs.openclaw.ai" class="btn btn-primary">Bekijk de documentatie</a>
-            <a href="https://discord.gg/openclaw" class="btn btn-secondary">Join de Discord</a>
-        </div>
-
-        <div class="info-box">
-            <h3>🔒 Waarom een remote server veiliger is:</h3>
+        <div class="what-others-do">
+            <h3>Waar mensen mee experimenteren:</h3>
             <ul>
-                <li>Geen toegang tot je persoonlijke computer of bestanden</li>
-                <li>Aparte e-mail en accounts — niet je echte</li>
-                <li>Geen bankgegevens of creditcards op je eigen systeem</li>
-                <li>Makkelijk te resetten als er iets misgaat</li>
-                <li>24/7 online, ook als jouw computer uit staat</li>
+                <li>E-mails voorbereiden en samenvatten</li>
+                <li>Research en informatie verzamelen</li>
+                <li>Ideeën uitwerken en sparren</li>
+                <li>Administratieve taken</li>
+                <li>En steeds meer, naarmate je ontdekt wat werkt</li>
             </ul>
+        </div>
+
+        <div class="signup-box">
+            <h2>Interesse? Laat je e-mail achter.</h2>
+            <p class="limited">De eerste <strong>10 inschrijvers</strong> ontvangen binnen 3 dagen een persoonlijke aanbieding.</p>
+            
+            <form action="https://formspree.io/f/xpwzgkvq" method="POST">
+                <div class="form-group">
+                    <input type="text" name="name" placeholder="Je naam" required>
+                </div>
+                <div class="form-group">
+                    <input type="email" name="email" placeholder="Je e-mailadres" required>
+                </div>
+                <button type="submit" class="btn-submit">Ja, ik wil meer weten</button>
+            </form>
+            
+            <p class="promise">Geen spam. Alleen relevante info over hoe je kunt starten.</p>
+        </div>
+
+        <div class="section">
+            <p style="color: #666;">
+                Dit is open source software. Transparant, controleerbaar. 
+                Wij maken het toegankelijk voor mensen die willen ontdekken wat mogelijk is — 
+                zonder eerst een techneut te hoeven worden.
+            </p>
         </div>
     </div>
 
