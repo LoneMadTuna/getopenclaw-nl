@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Privacy & Voorwaarden — GetOpenClaw</title>
+    <style>
+        :root {
+            --bg: #0f172a;
+            --text: #e2e8f0;
+            --accent: #a855f7;
+            --muted: #64748b;
+        }
+        :root.light {
+            --bg: #f8fafc;
+            --text: #1e293b;
+            --accent: #7c3aed;
+            --muted: #64748b;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.7;
+            font-size: 1.1rem;
+        }
+        @media (min-width: 1024px) { body { font-size: 1.25rem; } }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 3rem 1.5rem;
+        }
+        h1 { font-size: 2rem; margin-bottom: 2rem; }
+        h2 { font-size: 1.4rem; margin: 2rem 0 1rem; color: var(--accent); }
+        p { margin-bottom: 1rem; }
+        ul { margin-left: 1.5rem; margin-bottom: 1rem; }
+        a { color: var(--accent); }
+        .back { margin-top: 3rem; }
+        .theme-toggle {
+            position: fixed;
+            top: 1rem;
+            right: 1rem;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <button class="theme-toggle" onclick="toggleTheme()">🌙</button>
+    <div class="container">
+        <h1>Privacy & Voorwaarden</h1>
+        
+        <h2>Wie zijn wij?</h2>
+        <p>GetOpenClaw.nl biedt setup-services voor AI-assistenten. Wij zijn gevestigd in Nederland.</p>
+        
+        <h2>Welke gegevens verzamelen wij?</h2>
+        <p>Via ons contactformulier verzamelen wij:</p>
+        <ul>
+            <li>Naam</li>
+            <li>E-mailadres</li>
+            <li>Eventuele opmerkingen die je zelf invult</li>
+        </ul>
+        
+        <h2>Waarvoor gebruiken wij je gegevens?</h2>
+        <ul>
+            <li>Om contact met je op te nemen over onze diensten</li>
+            <li>Om je vragen te beantwoorden</li>
+        </ul>
+        <p>Wij verkopen je gegevens niet aan derden.</p>
+        
+        <h2>Hoe lang bewaren wij je gegevens?</h2>
+        <p>Wij bewaren je gegevens zolang nodig voor de dienstverlening, maximaal 2 jaar na laatste contact.</p>
+        
+        <h2>Jouw rechten</h2>
+        <p>Je hebt recht op:</p>
+        <ul>
+            <li>Inzage in je gegevens</li>
+            <li>Correctie van je gegevens</li>
+            <li>Verwijdering van je gegevens</li>
+        </ul>
+        <p>Mail naar <a href="mailto:info@getopenclaw.nl">info@getopenclaw.nl</a> om gebruik te maken van deze rechten.</p>
+        
+        <h2>Cookies</h2>
+        <p>Wij gebruiken Google Analytics om websitebezoek te analyseren. Deze gegevens zijn geanonimiseerd.</p>
+        
+        <h2>Algemene Voorwaarden</h2>
+        <p><strong>Dienstverlening:</strong> Wij leveren setup-services voor AI-assistenten op basis van OpenClaw software.</p>
+        <p><strong>Betaling:</strong> Betaling vooraf, tenzij anders overeengekomen.</p>
+        <p><strong>Garantie:</strong> Niet tevreden binnen 14 dagen? Geld terug.</p>
+        <p><strong>Aansprakelijkheid:</strong> Wij zijn niet aansprakelijk voor schade door gebruik van de AI-assistent. De gebruiker blijft verantwoordelijk voor controle van AI-output.</p>
+        
+        <h2>Contact</h2>
+        <p>Vragen? Mail naar <a href="mailto:info@getopenclaw.nl">info@getopenclaw.nl</a></p>
+        
+        <p class="back"><a href="/">← Terug naar home</a></p>
+    </div>
+    <script>
+        function toggleTheme() {
+            document.documentElement.classList.toggle('light');
+            localStorage.setItem('theme', document.documentElement.classList.contains('light') ? 'light' : 'dark');
+            document.querySelector('.theme-toggle').textContent = document.documentElement.classList.contains('light') ? '☀️' : '🌙';
+        }
+        if (localStorage.getItem('theme') === 'light' || (!localStorage.getItem('theme') && window.matchMedia('(prefers-color-scheme: light)').matches)) {
+            document.documentElement.classList.add('light');
+            document.querySelector('.theme-toggle').textContent = '☀️';
+        }
+    </script>
+</body>
+</html>
