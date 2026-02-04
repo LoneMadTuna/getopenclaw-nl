@@ -1,0 +1,986 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-VQXTMQ3WTF"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-VQXTMQ3WTF');
+    </script>
+    
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Je eerste digitale medewerker als ZZP'er. Inbox beheren, content voorbereiden, onderzoek doen. Zonder technisch gedoe. Setup €149 + €49/maand.">
+    <title>Je Eerste Digitale Medewerker | Voor ZZP'ers | OpenClaw</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        :root {
+            --primary: #1a365d;
+            --accent: #E8927C;
+            --accent-light: #f5c4b8;
+            --accent-dark: #d47a65;
+            --text: #2d3748;
+            --text-light: #64748b;
+            --bg: #fff;
+            --bg-alt: #faf8f7;
+            --bg-dark: #1a365d;
+            --border: #e2e8f0;
+            --success: #38a169;
+        }
+        
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            line-height: 1.7;
+            color: var(--text);
+            background: var(--bg);
+        }
+        
+        .container {
+            max-width: 720px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+        
+        /* Header */
+        header {
+            padding: 16px 24px;
+            border-bottom: 1px solid var(--border);
+            position: sticky;
+            top: 0;
+            background: rgba(255,255,255,0.97);
+            backdrop-filter: blur(12px);
+            z-index: 100;
+        }
+        
+        .header-inner {
+            max-width: 720px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-weight: 700;
+            font-size: 1.15rem;
+            color: var(--primary);
+            text-decoration: none;
+        }
+        
+        .logo span {
+            color: var(--accent);
+        }
+        
+        .header-cta {
+            background: var(--accent);
+            color: #fff;
+            padding: 10px 20px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 600;
+            transition: all 0.2s;
+        }
+        
+        .header-cta:hover {
+            background: var(--accent-dark);
+        }
+        
+        /* Hero */
+        .hero {
+            padding: 72px 24px 56px;
+            text-align: center;
+            background: linear-gradient(180deg, var(--bg-alt) 0%, var(--bg) 100%);
+        }
+        
+        .badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: #fff;
+            border: 1px solid var(--border);
+            padding: 8px 16px;
+            border-radius: 24px;
+            font-size: 0.875rem;
+            color: var(--text-light);
+            margin-bottom: 28px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+        }
+        
+        .badge-dot {
+            width: 8px;
+            height: 8px;
+            background: var(--success);
+            border-radius: 50%;
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+        
+        .hero h1 {
+            font-size: 2.25rem;
+            font-weight: 700;
+            color: var(--primary);
+            line-height: 1.2;
+            margin-bottom: 20px;
+        }
+        
+        .hero h1 .highlight {
+            color: var(--accent);
+        }
+        
+        .hero .subtitle {
+            font-size: 1.125rem;
+            color: var(--text-light);
+            margin-bottom: 32px;
+            max-width: 560px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .btn {
+            display: inline-block;
+            background: var(--accent);
+            color: #fff;
+            padding: 16px 36px;
+            border-radius: 10px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1rem;
+            transition: all 0.25s;
+            border: none;
+            cursor: pointer;
+        }
+        
+        .btn:hover {
+            background: var(--accent-dark);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(232, 146, 124, 0.35);
+        }
+        
+        .hero-trust {
+            margin-top: 28px;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 20px;
+            font-size: 0.875rem;
+            color: var(--text-light);
+        }
+        
+        .hero-trust span {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+        
+        .hero-trust .check {
+            color: var(--success);
+            font-weight: bold;
+        }
+        
+        /* Recognition section */
+        .recognition {
+            padding: 56px 24px;
+            background: var(--bg);
+        }
+        
+        .recognition-box {
+            background: linear-gradient(135deg, #fef7f5 0%, #fff 100%);
+            border: 1px solid var(--accent-light);
+            border-radius: 16px;
+            padding: 32px;
+        }
+        
+        .recognition-box .intro {
+            font-size: 0.875rem;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            color: var(--accent);
+            font-weight: 600;
+            margin-bottom: 16px;
+        }
+        
+        .recognition-box .quote {
+            font-size: 1.125rem;
+            color: var(--text);
+            line-height: 1.8;
+            margin-bottom: 20px;
+        }
+        
+        .recognition-box .quote em {
+            color: var(--accent-dark);
+            font-style: normal;
+            font-weight: 500;
+        }
+        
+        .recognition-box .outcome {
+            background: #fff;
+            border-radius: 10px;
+            padding: 20px;
+            border-left: 4px solid var(--accent);
+        }
+        
+        .recognition-box .outcome p {
+            font-weight: 500;
+            color: var(--primary);
+        }
+        
+        /* What you get section */
+        .benefits {
+            padding: 64px 24px;
+            background: var(--bg-alt);
+        }
+        
+        .section-label {
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            color: var(--accent);
+            font-weight: 600;
+            margin-bottom: 12px;
+        }
+        
+        .section-title {
+            font-size: 1.75rem;
+            color: var(--primary);
+            margin-bottom: 40px;
+            line-height: 1.3;
+        }
+        
+        .benefit-grid {
+            display: grid;
+            gap: 20px;
+        }
+        
+        .benefit-card {
+            background: #fff;
+            border-radius: 12px;
+            padding: 24px;
+            display: flex;
+            gap: 16px;
+            border: 1px solid var(--border);
+            transition: all 0.2s;
+        }
+        
+        .benefit-card:hover {
+            box-shadow: 0 4px 16px rgba(0,0,0,0.06);
+            border-color: var(--accent-light);
+        }
+        
+        .benefit-icon {
+            width: 48px;
+            height: 48px;
+            background: linear-gradient(135deg, var(--accent-light) 0%, #fff 100%);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            flex-shrink: 0;
+        }
+        
+        .benefit-content h3 {
+            font-size: 1.05rem;
+            color: var(--primary);
+            margin-bottom: 6px;
+            font-weight: 600;
+        }
+        
+        .benefit-content p {
+            font-size: 0.925rem;
+            color: var(--text-light);
+            line-height: 1.6;
+        }
+        
+        /* How it works */
+        .how-it-works {
+            padding: 64px 24px;
+            background: var(--bg);
+        }
+        
+        .steps {
+            display: flex;
+            flex-direction: column;
+            gap: 24px;
+        }
+        
+        .step {
+            display: flex;
+            gap: 20px;
+            align-items: flex-start;
+        }
+        
+        .step-number {
+            width: 40px;
+            height: 40px;
+            background: var(--accent);
+            color: #fff;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            flex-shrink: 0;
+        }
+        
+        .step-content h3 {
+            font-size: 1.05rem;
+            color: var(--primary);
+            margin-bottom: 4px;
+        }
+        
+        .step-content p {
+            color: var(--text-light);
+            font-size: 0.925rem;
+        }
+        
+        /* Social proof */
+        .social-proof {
+            padding: 64px 24px;
+            background: var(--bg-alt);
+        }
+        
+        .testimonial-grid {
+            display: grid;
+            gap: 20px;
+        }
+        
+        .testimonial {
+            background: #fff;
+            border-radius: 12px;
+            padding: 28px;
+            border: 1px solid var(--border);
+        }
+        
+        .testimonial .stars {
+            color: #fbbf24;
+            font-size: 1.1rem;
+            margin-bottom: 12px;
+        }
+        
+        .testimonial blockquote {
+            font-size: 1rem;
+            color: var(--text);
+            margin-bottom: 16px;
+            line-height: 1.7;
+            font-style: italic;
+        }
+        
+        .testimonial .author {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        
+        .testimonial .avatar {
+            width: 44px;
+            height: 44px;
+            background: linear-gradient(135deg, var(--accent-light) 0%, var(--accent) 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #fff;
+            font-weight: 600;
+        }
+        
+        .testimonial .author-info .name {
+            font-weight: 600;
+            color: var(--primary);
+        }
+        
+        .testimonial .author-info .role {
+            font-size: 0.85rem;
+            color: var(--text-light);
+        }
+        
+        /* Objections FAQ */
+        .objections {
+            padding: 64px 24px;
+            background: var(--bg);
+        }
+        
+        .objection-list {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+        
+        .objection {
+            background: var(--bg-alt);
+            border-radius: 12px;
+            padding: 24px;
+            border-left: 4px solid var(--accent);
+        }
+        
+        .objection h3 {
+            font-size: 1.05rem;
+            color: var(--primary);
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .objection h3 .icon {
+            font-size: 1.2rem;
+        }
+        
+        .objection p {
+            color: var(--text-light);
+            font-size: 0.95rem;
+            line-height: 1.7;
+        }
+        
+        /* Pricing */
+        .pricing {
+            padding: 64px 24px;
+            background: var(--bg-dark);
+            color: #fff;
+        }
+        
+        .pricing .section-label {
+            color: var(--accent-light);
+        }
+        
+        .pricing .section-title {
+            color: #fff;
+        }
+        
+        .price-box {
+            background: rgba(255,255,255,0.08);
+            border-radius: 16px;
+            padding: 32px;
+            border: 1px solid rgba(255,255,255,0.12);
+            text-align: center;
+        }
+        
+        .price-main {
+            margin-bottom: 8px;
+        }
+        
+        .price-main .setup {
+            font-size: 2.75rem;
+            font-weight: 700;
+        }
+        
+        .price-main .setup-label {
+            font-size: 1rem;
+            opacity: 0.8;
+            margin-left: 8px;
+        }
+        
+        .price-monthly {
+            font-size: 1.1rem;
+            opacity: 0.9;
+            margin-bottom: 28px;
+        }
+        
+        .price-monthly span {
+            color: var(--accent-light);
+            font-weight: 600;
+        }
+        
+        .price-features {
+            list-style: none;
+            text-align: left;
+            margin-bottom: 32px;
+        }
+        
+        .price-features li {
+            padding: 12px 0;
+            font-size: 0.95rem;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            border-bottom: 1px solid rgba(255,255,255,0.08);
+        }
+        
+        .price-features li:last-child {
+            border-bottom: none;
+        }
+        
+        .price-features li::before {
+            content: "✓";
+            color: var(--accent);
+            font-weight: bold;
+            font-size: 1.1rem;
+        }
+        
+        .price-box .btn {
+            width: 100%;
+            padding: 18px;
+            font-size: 1.05rem;
+        }
+        
+        .price-guarantee {
+            margin-top: 20px;
+            font-size: 0.875rem;
+            opacity: 0.7;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+        
+        /* Contact form */
+        .contact {
+            padding: 64px 24px;
+            background: var(--bg-alt);
+        }
+        
+        .contact-intro {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        
+        .contact-intro p {
+            color: var(--text-light);
+            max-width: 500px;
+            margin: 0 auto;
+        }
+        
+        .form-box {
+            background: #fff;
+            border-radius: 16px;
+            padding: 32px;
+            border: 1px solid var(--border);
+            box-shadow: 0 4px 24px rgba(0,0,0,0.04);
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .form-group label {
+            display: block;
+            font-weight: 500;
+            color: var(--primary);
+            margin-bottom: 8px;
+            font-size: 0.925rem;
+        }
+        
+        .form-group label .optional {
+            font-weight: 400;
+            color: var(--text-light);
+            font-size: 0.85rem;
+        }
+        
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 14px 16px;
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            font-size: 1rem;
+            font-family: inherit;
+            transition: all 0.2s;
+        }
+        
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--accent);
+            box-shadow: 0 0 0 3px rgba(232, 146, 124, 0.15);
+        }
+        
+        .form-group textarea {
+            min-height: 100px;
+            resize: vertical;
+        }
+        
+        .form-box .btn {
+            width: 100%;
+            padding: 16px;
+            margin-top: 8px;
+        }
+        
+        .form-note {
+            text-align: center;
+            margin-top: 16px;
+            font-size: 0.85rem;
+            color: var(--text-light);
+        }
+        
+        /* Final CTA */
+        .final-cta {
+            padding: 72px 24px;
+            background: linear-gradient(180deg, var(--bg) 0%, var(--bg-alt) 100%);
+            text-align: center;
+        }
+        
+        .final-cta h2 {
+            font-size: 1.75rem;
+            color: var(--primary);
+            margin-bottom: 16px;
+        }
+        
+        .final-cta p {
+            color: var(--text-light);
+            margin-bottom: 32px;
+            font-size: 1.1rem;
+        }
+        
+        /* Footer */
+        footer {
+            padding: 32px 24px;
+            text-align: center;
+            border-top: 1px solid var(--border);
+            background: var(--bg);
+        }
+        
+        footer p {
+            color: var(--text-light);
+            font-size: 0.875rem;
+        }
+        
+        footer a {
+            color: var(--text-light);
+            text-decoration: none;
+        }
+        
+        footer a:hover {
+            color: var(--accent);
+        }
+        
+        /* Responsive */
+        @media (min-width: 640px) {
+            .hero h1 {
+                font-size: 2.75rem;
+            }
+            
+            .benefit-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .testimonial-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .hero-trust {
+                flex-direction: column;
+                gap: 12px;
+            }
+            
+            .header-cta {
+                padding: 8px 14px;
+                font-size: 0.85rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-inner">
+            <a href="#" class="logo">openclaw<span>.</span></a>
+            <a href="#contact" class="header-cta">Gratis kennismaken</a>
+        </div>
+    </header>
+    
+    <section class="hero">
+        <div class="container">
+            <span class="badge">
+                <span class="badge-dot"></span>
+                Voor ZZP'ers & Freelancers
+            </span>
+            <h1>Je eerste <span class="highlight">digitale medewerker</span> die je wél kunt betalen</h1>
+            <p class="subtitle">Stel je voor: iemand die je inbox sorteert, je content voorbereidt, en research doet. Zonder technisch gedoe. Gewoon praten, opdrachten geven, en gedaan.</p>
+            <a href="#contact" class="btn">Neem je eerste medewerker aan →</a>
+            <div class="hero-trust">
+                <span><span class="check">✓</span> Draaiend binnen 48 uur</span>
+                <span><span class="check">✓</span> Geen technische kennis nodig</span>
+                <span><span class="check">✓</span> Nederlandse support</span>
+            </div>
+        </div>
+    </section>
+    
+    <section class="recognition">
+        <div class="container">
+            <div class="recognition-box">
+                <p class="intro">Herkenbaar?</p>
+                <p class="quote">
+                    Je werkt 50+ uur per week en bent <em>altijd</em> aan het rennen. Klanten, content, administratie, acquisitie... Je hebt geen team, geen assistent, geen hulp. Je ziet collega's posten over hoe productief ze zijn geworden. Je wilt dat ook. Maar je hebt geen tijd om je erin te verdiepen — en het technische gedoe schrikt je af.
+                </p>
+                <div class="outcome">
+                    <p>💡 Wat als je morgen al een medewerker had die de helft van dat werk overneemt? Zonder dat jij iets hoeft te installeren of te configureren?</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section class="benefits">
+        <div class="container">
+            <p class="section-label">Wat je collega voor je doet</p>
+            <h2 class="section-title">Praktische hulp waar je écht wat aan hebt</h2>
+            
+            <div class="benefit-grid">
+                <div class="benefit-card">
+                    <div class="benefit-icon">📬</div>
+                    <div class="benefit-content">
+                        <h3>Inbox onder controle</h3>
+                        <p>Belangrijke mails herkennen, de rest samenvatten. Je begint de dag met overzicht in plaats van chaos.</p>
+                    </div>
+                </div>
+                
+                <div class="benefit-card">
+                    <div class="benefit-icon">📱</div>
+                    <div class="benefit-content">
+                        <h3>Content voorbereid</h3>
+                        <p>Social posts voor meerdere klanten? Je collega bereidt concepten voor zodat jij alleen nog hoeft te finetunen.</p>
+                    </div>
+                </div>
+                
+                <div class="benefit-card">
+                    <div class="benefit-icon">🔍</div>
+                    <div class="benefit-content">
+                        <h3>Research & trends</h3>
+                        <p>Artikelen, trends, cijfers voor je klanten. Vraag het 's avonds, het ligt 's ochtends klaar.</p>
+                    </div>
+                </div>
+                
+                <div class="benefit-card">
+                    <div class="benefit-icon">📋</div>
+                    <div class="benefit-content">
+                        <h3>Administratie hulp</h3>
+                        <p>Factuurherinneringen, tijdregistratie, follow-ups. De taken die je steeds uitstelt — nu gedaan.</p>
+                    </div>
+                </div>
+                
+                <div class="benefit-card">
+                    <div class="benefit-icon">☀️</div>
+                    <div class="benefit-content">
+                        <h3>Morning briefing</h3>
+                        <p>"Wat moet ik vandaag weten?" Een overzicht van je dag, prioriteiten, en actiepunten.</p>
+                    </div>
+                </div>
+                
+                <div class="benefit-card">
+                    <div class="benefit-icon">✍️</div>
+                    <div class="benefit-content">
+                        <h3>Schrijfwerk versnellen</h3>
+                        <p>Offertes, proposals, e-mails. Dicteer de context, krijg een professionele versie terug.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section class="how-it-works">
+        <div class="container">
+            <p class="section-label">Hoe het werkt</p>
+            <h2 class="section-title">Van aanmelding naar werkende collega in 3 stappen</h2>
+            
+            <div class="steps">
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <div class="step-content">
+                        <h3>Je vertelt wat je nodig hebt</h3>
+                        <p>Kort gesprek (20 minuten) over je werk, je klanten, en wat je collega moet kunnen. Wij luisteren en stellen vragen.</p>
+                    </div>
+                </div>
+                
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <div class="step-content">
+                        <h3>Wij richten de werkplek in</h3>
+                        <p>Zoals een IT-afdeling een laptop klaarzet voor een nieuwe medewerker. Server, software, koppelingen — wij regelen het allemaal.</p>
+                    </div>
+                </div>
+                
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <div class="step-content">
+                        <h3>Jij gaat aan de slag</h3>
+                        <p>Binnen 48 uur chat je met je nieuwe collega via Telegram. Gewoon praten, net als met een echte medewerker. En hoe vaker je samenwerkt, hoe beter deze collega jou begrijpt.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section class="social-proof">
+        <div class="container">
+            <p class="section-label">Ervaringen</p>
+            <h2 class="section-title">Van andere ZZP'ers</h2>
+            
+            <div class="testimonial-grid">
+                <div class="testimonial">
+                    <div class="stars">★★★★★</div>
+                    <blockquote>"Ik was sceptisch — weer zo'n tech-ding waar ik niks van snap. Maar het werkt gewoon. Ik stuur een spraakbericht en krijg een professionele e-mail terug. Scheelt me makkelijk een uur per dag."</blockquote>
+                    <div class="author">
+                        <div class="avatar">SV</div>
+                        <div class="author-info">
+                            <div class="name">Sandra V.</div>
+                            <div class="role">Freelance Communicatieadviseur</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="testimonial">
+                    <div class="stars">★★★★★</div>
+                    <blockquote>"Eindelijk iemand die de research voor me doet. Ik vroeg om trends voor een klant in de zorgsector, en een uur later had ik een compleet overzicht. Dat kostte me normaal een hele middag."</blockquote>
+                    <div class="author">
+                        <div class="avatar">MJ</div>
+                        <div class="author-info">
+                            <div class="name">Mark J.</div>
+                            <div class="role">Marketing Consultant</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="testimonial">
+                    <div class="stars">★★★★★</div>
+                    <blockquote>"Het voelt echt alsof ik een assistent heb. De morning briefing is fantastisch — ik weet precies wat er speelt voordat ik mijn laptop open. Voor €49 per maand is dat echt niks."</blockquote>
+                    <div class="author">
+                        <div class="avatar">LB</div>
+                        <div class="author-info">
+                            <div class="name">Linda B.</div>
+                            <div class="role">Social Media Manager</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="testimonial">
+                    <div class="stars">★★★★★</div>
+                    <blockquote>"Ik had ChatGPT geprobeerd maar dit is next level. Het kent mijn klanten, mijn stijl, mijn voorkeuren. En ik hoefde letterlijk niks technisch te doen — ze hebben alles voor me opgezet."</blockquote>
+                    <div class="author">
+                        <div class="avatar">RH</div>
+                        <div class="author-info">
+                            <div class="name">Robin H.</div>
+                            <div class="role">Content Creator</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section class="objections">
+        <div class="container">
+            <p class="section-label">Eerlijk antwoord op je vragen</p>
+            <h2 class="section-title">Wat je je misschien afvraagt</h2>
+            
+            <div class="objection-list">
+                <div class="objection">
+                    <h3><span class="icon">🤔</span> "Is het niet te technisch voor mij?"</h3>
+                    <p>Nee. Wij regelen alle techniek — jij hoeft alleen te chatten via Telegram. Als je WhatsApp kunt gebruiken, kun je dit ook. Letterlijk: je stuurt berichten en krijgt antwoord. Geen terminal, geen code, geen gedoe.</p>
+                </div>
+                
+                <div class="objection">
+                    <h3><span class="icon">🔐</span> "Waar gaat mijn data heen?"</h3>
+                    <p>Je krijgt een eigen server in Europa. Geen gedeelde omgeving met anderen. Jouw data blijft van jou en wordt niet gebruikt om modellen te trainen. We houden ons aan de AVG en je bepaalt zelf wat je deelt.</p>
+                </div>
+                
+                <div class="objection">
+                    <h3><span class="icon">💸</span> "Worden de kosten niet heel hoog?"</h3>
+                    <p>Duidelijke prijzen, geen verrassingen. €149 eenmalig voor de setup, daarna €49 per maand all-in. Dat is inclusief hosting en ondersteuning. Gemiddeld gebruik kost €5-15 extra per maand voor tokens. Minder dan één uur van je uurtarief — en het bespaart je 5+ uur per week.</p>
+                </div>
+                
+                <div class="objection">
+                    <h3><span class="icon">⏰</span> "Heb ik tijd om het te leren?"</h3>
+                    <p>Je bent binnen 20 minuten op weg. Onboarding is een kort gesprek, daarna kun je direct beginnen. Geen cursussen, geen handleidingen van 50 pagina's. Je leert al doende, net als met een echte collega.</p>
+                </div>
+                
+                <div class="objection">
+                    <h3><span class="icon">🎁</span> "Wat als het niet werkt?"</h3>
+                    <p>7 dagen geld-terug-garantie. Werkt het niet zoals verwacht? Je krijgt je setup-kosten terug, geen vragen. Wij geloven in wat we doen — anders boden we dit niet aan.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section class="pricing" id="pricing">
+        <div class="container">
+            <p class="section-label">Investering</p>
+            <h2 class="section-title">Transparante prijzen</h2>
+            
+            <div class="price-box">
+                <div class="price-main">
+                    <span class="setup">€149</span>
+                    <span class="setup-label">eenmalig</span>
+                </div>
+                <p class="price-monthly">+ <span>€49/maand</span> voor hosting & support</p>
+                
+                <ul class="price-features">
+                    <li>Volledige OpenClaw setup op je eigen server</li>
+                    <li>Persoonlijk onboarding-gesprek (20 min)</li>
+                    <li>Telegram-koppeling ingesteld</li>
+                    <li>3 custom opdrachten voor jouw werk</li>
+                    <li>Nederlandse e-mail & chat support</li>
+                    <li>7 dagen geld-terug-garantie</li>
+                </ul>
+                
+                <a href="#contact" class="btn">Begin de samenwerking →</a>
+                
+                <p class="price-guarantee">🛡️ 7 dagen niet-goed-geld-terug garantie</p>
+            </div>
+        </div>
+    </section>
+    
+    <section class="contact" id="contact">
+        <div class="container">
+            <div class="contact-intro">
+                <p class="section-label">Vrijblijvend kennismaken</p>
+                <h2 class="section-title">Vertel ons over je werk</h2>
+                <p>Vul het formulier in en we nemen binnen 24 uur contact met je op. Geen verplichtingen, gewoon een gesprek om te kijken of het past.</p>
+            </div>
+            
+            <div class="form-box">
+                <form action="https://formspree.io/f/yourformid" method="POST">
+                    <div class="form-group">
+                        <label for="name">Je naam</label>
+                        <input type="text" id="name" name="name" placeholder="Hoe mogen we je noemen?" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="email">E-mailadres</label>
+                        <input type="email" id="email" name="email" placeholder="naam@voorbeeld.nl" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="phone">Telefoonnummer <span class="optional">(optioneel)</span></label>
+                        <input type="tel" id="phone" name="phone" placeholder="06-12345678">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="challenge">Wat is je grootste uitdaging?</label>
+                        <textarea id="challenge" name="challenge" placeholder="Waar loop je tegenaan? Wat zou je graag anders zien? Vertel zo veel of zo weinig als je wilt."></textarea>
+                    </div>
+                    
+                    <button type="submit" class="btn">Verstuur →</button>
+                </form>
+                
+                <p class="form-note">We delen je gegevens met niemand. Je ontvangt één e-mail van ons, geen spam.</p>
+            </div>
+        </div>
+    </section>
+    
+    <section class="final-cta">
+        <div class="container">
+            <h2>Morgen al slimmer werken?</h2>
+            <p>Eén keer instellen, elke dag profiteren. Je eerste digitale collega wacht op je.</p>
+            <a href="#contact" class="btn">Ja, ik wil dit →</a>
+        </div>
+    </section>
+    
+    <footer>
+        <div class="container">
+            <p>© 2026 OpenClaw · <a href="#">Privacy</a> · <a href="#">Voorwaarden</a> · <a href="mailto:info@getopenclaw.nl">info@getopenclaw.nl</a></p>
+        </div>
+    </footer>
+</body>
+</html>
