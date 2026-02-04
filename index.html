@@ -282,12 +282,16 @@
             h1 { font-size: 1.7rem; }
             .container { padding: 2rem 1rem; }
         }
+        /* Responsive header */
+        .site-title {
+            font-size: clamp(1.8rem, 8vw, 3.5rem);
+        }
     </style>
 </head>
 <body>
     <!-- Header met grote logo/naam -->
-    <header style="background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%); padding: 2rem; text-align: center; margin-bottom: 0;">
-        <h1 style="font-size: 3.5rem; font-weight: 800; color: white; margin: 0; letter-spacing: -1px; text-shadow: 2px 2px 4px rgba(0,0,0,0.2);">
+    <header style="background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%); padding: 2rem 1rem; text-align: center; margin-bottom: 0;">
+        <h1 class="site-title" style="font-weight: 800; color: white; margin: 0; letter-spacing: -1px; text-shadow: 2px 2px 4px rgba(0,0,0,0.2);">
             GetOpenClaw.nl
         </h1>
         <p style="color: rgba(255,255,255,0.9); font-size: 1.2rem; margin-top: 0.5rem;">
