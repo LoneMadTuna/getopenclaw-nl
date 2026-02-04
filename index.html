@@ -59,7 +59,7 @@
             font-size: 18px;
         }
         .container {
-            max-width: 900px;
+            max-width: 680px;
             margin: 0 auto;
             padding: 3rem 1.5rem;
         }
@@ -131,133 +131,6 @@
         .highlight-box p {
             color: #1b5e20;
         }
-        
-        /* Pricing Tables */
-        .pricing-section {
-            margin: 3rem 0;
-        }
-        .pricing-section h2 {
-            font-size: 1.8rem;
-            text-align: center;
-            margin-bottom: 2rem;
-            color: #1a1a2e;
-        }
-        .pricing-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 1.5rem;
-        }
-        @media (max-width: 800px) {
-            .pricing-grid {
-                grid-template-columns: 1fr;
-            }
-        }
-        .pricing-card {
-            background: #fff;
-            border: 2px solid #e0e0e0;
-            border-radius: 16px;
-            padding: 1.5rem;
-            text-align: center;
-            position: relative;
-            transition: transform 0.2s, box-shadow 0.2s;
-        }
-        .pricing-card:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 8px 30px rgba(0,0,0,0.1);
-        }
-        .pricing-card.popular {
-            border-color: #3b82f6;
-            box-shadow: 0 4px 20px rgba(59, 130, 246, 0.2);
-        }
-        .pricing-card.popular::before {
-            content: "⭐ Populair";
-            position: absolute;
-            top: -12px;
-            left: 50%;
-            transform: translateX(-50%);
-            background: #3b82f6;
-            color: #fff;
-            padding: 0.3rem 1rem;
-            border-radius: 20px;
-            font-size: 0.8rem;
-            font-weight: 600;
-        }
-        .pricing-name {
-            font-size: 1.3rem;
-            font-weight: 700;
-            margin-bottom: 0.5rem;
-            color: #1a1a2e;
-        }
-        .pricing-price {
-            font-size: 2.5rem;
-            font-weight: 800;
-            color: #3b82f6;
-            margin: 1rem 0;
-        }
-        .pricing-price span {
-            font-size: 1rem;
-            font-weight: 400;
-            color: #666;
-        }
-        .pricing-desc {
-            font-size: 0.9rem;
-            color: #666;
-            margin-bottom: 1.5rem;
-        }
-        .pricing-features {
-            list-style: none;
-            text-align: left;
-            margin-bottom: 1.5rem;
-        }
-        .pricing-features li {
-            padding: 0.5rem 0;
-            padding-left: 1.5rem;
-            position: relative;
-            font-size: 0.95rem;
-            color: #444;
-        }
-        .pricing-features li::before {
-            content: "✓";
-            position: absolute;
-            left: 0;
-            color: #10b981;
-            font-weight: bold;
-        }
-        .pricing-features li.no::before {
-            content: "—";
-            color: #ccc;
-        }
-        .pricing-btn {
-            display: block;
-            width: 100%;
-            padding: 0.8rem;
-            font-size: 1rem;
-            font-weight: 600;
-            background: #f5f5f5;
-            color: #333;
-            border: none;
-            border-radius: 8px;
-            cursor: pointer;
-            text-decoration: none;
-            transition: background 0.2s;
-        }
-        .pricing-btn:hover {
-            background: #e0e0e0;
-        }
-        .pricing-card.popular .pricing-btn {
-            background: #3b82f6;
-            color: #fff;
-        }
-        .pricing-card.popular .pricing-btn:hover {
-            background: #2563eb;
-        }
-        .pricing-note {
-            text-align: center;
-            margin-top: 1.5rem;
-            font-size: 0.9rem;
-            color: #666;
-        }
-        
         .signup-box {
             background: linear-gradient(135deg, #fff 0%, #f8f9ff 100%);
             border: 2px solid #3b82f6;
@@ -280,9 +153,26 @@
         .signup-box .limited strong {
             color: #e53935;
         }
+        .form-group {
+            margin-bottom: 1rem;
+        }
+        .form-group input {
+            width: 100%;
+            padding: 0.9rem 1rem;
+            font-size: 1rem;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            background: #fff;
+            transition: border-color 0.2s, box-shadow 0.2s;
+        }
+        .form-group input:focus {
+            outline: none;
+            border-color: #3b82f6;
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+        }
         .btn-submit {
-            display: inline-block;
-            padding: 1rem 2rem;
+            width: 100%;
+            padding: 1rem;
             font-size: 1.05rem;
             font-weight: 600;
             background: #3b82f6;
@@ -290,7 +180,6 @@
             border: none;
             border-radius: 8px;
             cursor: pointer;
-            text-decoration: none;
             transition: transform 0.2s, box-shadow 0.2s;
         }
         .btn-submit:hover {
@@ -392,12 +281,11 @@
             body { font-size: 16px; }
             h1 { font-size: 1.7rem; }
             .container { padding: 2rem 1rem; }
-            .pricing-price { font-size: 2rem; }
         }
     </style>
 </head>
 <body>
-    <!-- Header -->
+    <!-- Header met grote logo/naam -->
     <header style="background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%); padding: 2rem; text-align: center; margin-bottom: 0;">
         <h1 style="font-size: 3.5rem; font-weight: 800; color: white; margin: 0; letter-spacing: -1px; text-shadow: 2px 2px 4px rgba(0,0,0,0.2);">
             GetOpenClaw.nl
@@ -438,69 +326,6 @@
             </p>
         </div>
 
-        <!-- Pricing Section -->
-        <div class="pricing-section">
-            <h2>Kies je pakket</h2>
-            
-            <div class="pricing-grid">
-                <!-- Basis -->
-                <div class="pricing-card">
-                    <div class="pricing-name">Basis</div>
-                    <div class="pricing-price">€149 <span>eenmalig</span></div>
-                    <div class="pricing-desc">Perfect om te starten</div>
-                    <ul class="pricing-features">
-                        <li>OpenClaw volledig geïnstalleerd</li>
-                        <li>Virtuele server (VPS) ingericht</li>
-                        <li>Telegram-integratie</li>
-                        <li>Basis configuratie</li>
-                        <li>Handleiding om te starten</li>
-                        <li class="no">Security audit</li>
-                        <li class="no">Voice calling</li>
-                    </ul>
-                    <a href="https://tally.so/r/7RxP0R" class="pricing-btn">Aanvragen</a>
-                </div>
-                
-                <!-- Basis Plus (Populair) -->
-                <div class="pricing-card popular">
-                    <div class="pricing-name">Basis Plus</div>
-                    <div class="pricing-price">€197 <span>eenmalig</span></div>
-                    <div class="pricing-desc">Veilig en professioneel</div>
-                    <ul class="pricing-features">
-                        <li>Alles van Basis</li>
-                        <li>🔒 Security audit</li>
-                        <li>Firewall configuratie</li>
-                        <li>Automatische backups</li>
-                        <li>WhatsApp-integratie</li>
-                        <li>Email support (7 dagen)</li>
-                        <li class="no">Voice calling</li>
-                    </ul>
-                    <a href="https://tally.so/r/7RxP0R" class="pricing-btn">Aanvragen</a>
-                </div>
-                
-                <!-- Pro -->
-                <div class="pricing-card">
-                    <div class="pricing-name">Pro</div>
-                    <div class="pricing-price">€497 <span>eenmalig</span></div>
-                    <div class="pricing-desc">Voor power users</div>
-                    <ul class="pricing-features">
-                        <li>Alles van Basis Plus</li>
-                        <li>📞 Voice calling setup</li>
-                        <li>Meerdere chat-kanalen</li>
-                        <li>Custom integraties (1x)</li>
-                        <li>1 uur video onboarding</li>
-                        <li>Priority support (30 dagen)</li>
-                        <li>Updates support (3 maanden)</li>
-                    </ul>
-                    <a href="https://tally.so/r/7RxP0R" class="pricing-btn">Aanvragen</a>
-                </div>
-            </div>
-            
-            <p class="pricing-note">
-                💡 Hosting (~€10-20/maand) en AI-tokens (~€20-50/maand) apart, direct bij de providers.<br>
-                ✅ 14 dagen niet-goed-geld-terug garantie op alle pakketten.
-            </p>
-        </div>
-
         <div class="what-others-do">
             <h3>Waar mensen mee experimenteren:</h3>
             <ul>
@@ -513,12 +338,14 @@
         </div>
 
         <div class="signup-box">
-            <h2>Liever eerst meer informatie?</h2>
-            <p class="limited">Laat je mailadres achter. We nemen contact op om je vragen te beantwoorden.</p>
+            <h2>Zelf ontdekken wat dit voor jou kan betekenen?</h2>
+            <p class="limited">Onze service is bijna klaar om live te gaan (in beta).<br>
+            Laat je mailadres achter en ontvang een <strong>speciale openingsaanbieding</strong>.</p>
+            <p class="limited" style="margin-top: 0.5rem;">🎁 We verloten <strong>5 gratis setups</strong> onder de eerste inschrijvers.</p>
             
-            <a href="https://tally.so/r/7RxP0R" class="btn-submit">Ja, neem contact met mij op</a>
+            <a href="https://tally.so/r/7RxP0R" target="_blank" class="btn-submit" style="display: inline-block; text-align: center; text-decoration: none;">Ja, informeer mij over de mogelijkheden</a>
             
-            <p class="promise">Geen spam. Alleen nuttige info.</p>
+            <p class="promise">Geen spam. Je hoort alleen van ons als we live gaan.</p>
         </div>
 
         <div class="faq">
@@ -543,10 +370,10 @@
             </div>
             
             <div class="faq-item">
-                <div class="faq-question">Wat zijn de maandelijkse kosten?</div>
+                <div class="faq-question">Wat kost het?</div>
                 <div class="faq-answer">
-                    Na de eenmalige setup betaal je alleen voor de server hosting (~€10-20/maand, direct bij de hosting provider) 
-                    en het AI-gebruik bij Anthropic (afhankelijk van gebruik, meestal €20-50/maand).
+                    De setup service kost eenmalig <strong>€99</strong> (beta-prijs). 
+                    Daarnaast betaal je voor de server hosting (~€10-20/maand) en het AI-gebruik bij Anthropic (afhankelijk van gebruik, meestal €20-50/maand).
                     Geen verborgen kosten, geen abonnement bij ons.
                 </div>
             </div>
@@ -568,10 +395,11 @@
             </div>
             
             <div class="faq-item">
-                <div class="faq-question">Wat als ik niet tevreden ben?</div>
+                <div class="faq-question">Wat kan ik ermee?</div>
                 <div class="faq-answer">
-                    We hebben een 14 dagen niet-goed-geld-terug garantie. Als het niet is wat je verwachtte, 
-                    krijg je je geld terug. Geen vragen, geen gedoe.
+                    Veel! Mensen gebruiken het voor: e-mails voorbereiden, research en samenvattingen, content schrijven, 
+                    administratie, brainstormen, code schrijven, data-analyse, en meer. 
+                    Het mooie is: je ontdekt gaandeweg wat voor jou werkt.
                 </div>
             </div>
         </div>
@@ -586,12 +414,8 @@
     </div>
 
     <footer>
-        <p>
-            <a href="/privacy.html">Privacy & Voorwaarden</a> · 
-            <a href="https://github.com/openclaw/openclaw">OpenClaw op GitHub</a>
-        </p>
+        <p>OpenClaw is open source — <a href="https://github.com/openclaw/openclaw">GitHub</a></p>
         <p style="margin-top: 0.5rem;">Vragen? <a href="mailto:info@getopenclaw.nl">info@getopenclaw.nl</a></p>
-        <p style="margin-top: 0.5rem; font-size: 0.8rem;">© 2026 GetOpenClaw.nl</p>
     </footer>
 
     <script>
