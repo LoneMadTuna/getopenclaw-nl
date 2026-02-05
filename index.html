@@ -49,473 +49,1209 @@
         "serviceType": "AI Assistant Setup"
     }
     </script>
-    <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body {
-            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
-            background: #fff;
-            color: #333;
-            line-height: 1.7;
-            font-size: 1rem;
-        }
-        /* Responsive font sizing */
-        @media (min-width: 1024px) { body { font-size: 1.1rem; } }
-        @media (min-width: 1600px) { body { font-size: 1.2rem; } }
 
+    <!-- Fonts: Cormorant Garamond (elegant serif) + Outfit (geometric sans) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        /* ============================================
+           CSS VARIABLES — DARK (default) + LIGHT mode
+           ============================================ */
+        :root {
+            /* Dark mode (default) */
+            --bg-primary: #08090d;
+            --bg-secondary: #0f1117;
+            --bg-card: #13151c;
+            --bg-card-hover: #191c25;
+            --bg-elevated: #1a1d27;
+            --bg-quote: #111318;
+            --bg-highlight: #14170e;
+            
+            --text-primary: #ede8df;
+            --text-secondary: #a09b91;
+            --text-muted: #6b665c;
+            --text-on-accent: #08090d;
+            
+            --accent: #c9a84c;
+            --accent-dim: #a08736;
+            --accent-glow: rgba(201, 168, 76, 0.15);
+            --accent-glow-strong: rgba(201, 168, 76, 0.3);
+            
+            --border: rgba(201, 168, 76, 0.12);
+            --border-strong: rgba(201, 168, 76, 0.25);
+            --border-card: rgba(201, 168, 76, 0.08);
+            
+            --green: #5a9a5a;
+            --green-bg: rgba(90, 154, 90, 0.08);
+            --red: #c75050;
+            --amber: #d4a020;
+            --amber-bg: rgba(212, 160, 32, 0.08);
+            
+            --shadow-sm: 0 2px 8px rgba(0,0,0,0.3);
+            --shadow-md: 0 4px 24px rgba(0,0,0,0.4);
+            --shadow-lg: 0 8px 40px rgba(0,0,0,0.5);
+            --shadow-accent: 0 4px 30px rgba(201, 168, 76, 0.15);
+            
+            --noise-opacity: 0.03;
+            --gradient-hero: radial-gradient(ellipse 80% 60% at 70% 20%, rgba(201, 168, 76, 0.06) 0%, transparent 70%);
+            --divider: linear-gradient(90deg, transparent, var(--border-strong), transparent);
+        }
+
+        :root.light {
+            --bg-primary: #faf7f2;
+            --bg-secondary: #f3efe8;
+            --bg-card: #ffffff;
+            --bg-card-hover: #fdfcfa;
+            --bg-elevated: #ffffff;
+            --bg-quote: #f5f2ec;
+            --bg-highlight: #f4f7f0;
+            
+            --text-primary: #1a1812;
+            --text-secondary: #5c584e;
+            --text-muted: #9a9488;
+            --text-on-accent: #ffffff;
+            
+            --accent: #8a6d2b;
+            --accent-dim: #6e5722;
+            --accent-glow: rgba(138, 109, 43, 0.08);
+            --accent-glow-strong: rgba(138, 109, 43, 0.15);
+            
+            --border: rgba(138, 109, 43, 0.15);
+            --border-strong: rgba(138, 109, 43, 0.3);
+            --border-card: rgba(0, 0, 0, 0.08);
+            
+            --green: #3d7a3d;
+            --green-bg: rgba(61, 122, 61, 0.06);
+            --red: #b83a3a;
+            --amber: #9a7520;
+            --amber-bg: rgba(154, 117, 32, 0.06);
+            
+            --shadow-sm: 0 2px 8px rgba(0,0,0,0.06);
+            --shadow-md: 0 4px 24px rgba(0,0,0,0.08);
+            --shadow-lg: 0 8px 40px rgba(0,0,0,0.1);
+            --shadow-accent: 0 4px 30px rgba(138, 109, 43, 0.1);
+            
+            --noise-opacity: 0.015;
+            --gradient-hero: radial-gradient(ellipse 80% 60% at 70% 20%, rgba(138, 109, 43, 0.04) 0%, transparent 70%);
+            --divider: linear-gradient(90deg, transparent, var(--border-strong), transparent);
+        }
+
+        /* ============================================
+           RESET + BASE
+           ============================================ */
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Outfit', sans-serif;
+            font-weight: 400;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.75;
+            font-size: 1.1rem;
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        @media (min-width: 1024px) { body { font-size: 1.25rem; } }
+        @media (min-width: 1600px) { body { font-size: 1.4rem; } }
+
+        /* Noise texture overlay */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0; left: 0; right: 0; bottom: 0;
+            pointer-events: none;
+            z-index: 9999;
+            opacity: var(--noise-opacity);
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+            background-repeat: repeat;
+            background-size: 256px 256px;
+        }
+
+        ::selection {
+            background: var(--accent);
+            color: var(--text-on-accent);
+        }
+
+        a { color: var(--accent); text-decoration: none; transition: color 0.3s ease; }
+        a:hover { color: var(--text-primary); }
+
+        /* ============================================
+           THEME TOGGLE
+           ============================================ */
+        .theme-toggle {
+            position: fixed;
+            top: 1.5rem;
+            right: 1.5rem;
+            z-index: 1000;
+            width: 48px;
+            height: 48px;
+            border: 1px solid var(--border-strong);
+            border-radius: 50%;
+            background: var(--bg-card);
+            color: var(--accent);
+            font-size: 1.2rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+        }
+        .theme-toggle:hover {
+            background: var(--accent);
+            color: var(--text-on-accent);
+            box-shadow: var(--shadow-accent);
+            transform: rotate(15deg);
+        }
+
+        /* ============================================
+           LAYOUT
+           ============================================ */
         .container {
-            max-width: 680px;
+            max-width: 760px;
             margin: 0 auto;
-            padding: 3rem 1.5rem;
+            padding: 0 1.5rem;
         }
-        @media (min-width: 768px) {
-            .container {
-                max-width: 900px;
-            }
+        @media (min-width: 768px) { .container { padding: 0 2rem; } }
+        .container--wide { max-width: 1000px; }
+
+        .section-spacer { height: 6rem; }
+        @media (min-width: 768px) { .section-spacer { height: 8rem; } }
+
+        .divider {
+            height: 1px;
+            background: var(--divider);
+            margin: 0 auto;
+            max-width: 200px;
         }
-        .badge {
-            display: inline-block;
-            background: #e8f0fe;
-            color: #3b82f6;
-            padding: 0.5rem 1rem;
-            border-radius: 20px;
-            font-size: 0.9em;
-            font-weight: 500;
-            margin-bottom: 2rem;
-            letter-spacing: 0.02em;
+
+        /* ============================================
+           ANIMATIONS
+           ============================================ */
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
         }
-        h1 {
-            font-size: 2.2em;
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        @keyframes shimmer {
+            0% { background-position: -200% center; }
+            100% { background-position: 200% center; }
+        }
+        @keyframes pulseGlow {
+            0%, 100% { box-shadow: 0 0 20px rgba(201, 168, 76, 0.1); }
+            50% { box-shadow: 0 0 40px rgba(201, 168, 76, 0.2); }
+        }
+        @keyframes drawLine {
+            from { width: 0; }
+            to { width: 60px; }
+        }
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-6px); }
+        }
+        @keyframes scaleIn {
+            from { opacity: 0; transform: scale(0.95); }
+            to { opacity: 1; transform: scale(1); }
+        }
+
+        .reveal {
+            opacity: 0;
+            animation: fadeInUp 0.8s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+        }
+        .reveal-d1 { animation-delay: 0.1s; }
+        .reveal-d2 { animation-delay: 0.2s; }
+        .reveal-d3 { animation-delay: 0.3s; }
+        .reveal-d4 { animation-delay: 0.4s; }
+        .reveal-d5 { animation-delay: 0.5s; }
+        .reveal-d6 { animation-delay: 0.6s; }
+        .reveal-d7 { animation-delay: 0.7s; }
+        .reveal-d8 { animation-delay: 0.8s; }
+
+        .scroll-reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s cubic-bezier(0.22, 1, 0.36, 1), transform 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+        }
+        .scroll-reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* ============================================
+           TYPOGRAPHY
+           ============================================ */
+        .serif { font-family: 'Cormorant Garamond', Georgia, serif; }
+
+        h1, h2, h3 {
+            font-family: 'Cormorant Garamond', Georgia, serif;
+            font-weight: 600;
+            line-height: 1.2;
+            letter-spacing: -0.02em;
+        }
+
+        .text-accent {
+            color: var(--accent);
+        }
+
+        .text-gradient {
+            background: linear-gradient(135deg, var(--accent) 0%, #e8d5a0 50%, var(--accent) 100%);
+            background-size: 200% auto;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .light .text-gradient {
+            background: linear-gradient(135deg, #6e5722, #9a7b3e, #6e5722);
+            background-size: 200% auto;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .label {
+            font-family: 'Outfit', sans-serif;
+            font-size: 0.75rem;
+            font-weight: 600;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: var(--accent);
+        }
+
+        /* ============================================
+           HEADER
+           ============================================ */
+        .site-header {
+            padding: 4rem 0 2rem;
+            text-align: center;
+            position: relative;
+            background: var(--gradient-hero);
+        }
+
+        .site-header::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: var(--divider);
+        }
+
+        .site-name {
+            font-family: 'Cormorant Garamond', Georgia, serif;
+            font-size: clamp(2.4rem, 8vw, 4.2rem);
             font-weight: 700;
-            margin-bottom: 1.2rem;
-            color: #1a1a2e;
-            line-height: 1.3;
+            letter-spacing: -0.03em;
+            margin-bottom: 0.3rem;
         }
-        .intro {
-            font-size: 1.1em;
-            color: #555;
-            margin-bottom: 2.5rem;
+
+        .site-tagline {
+            font-family: 'Outfit', sans-serif;
+            font-size: 1rem;
+            font-weight: 300;
+            color: var(--text-secondary);
+            letter-spacing: 0.05em;
         }
-        .quote {
-            background: linear-gradient(135deg, #f5f7fa 0%, #e4e8f0 100%);
-            border-left: 4px solid #3b82f6;
-            border-radius: 0 12px 12px 0;
-            padding: 1.5rem;
-            margin: 2rem 0;
+
+        /* ============================================
+           BADGE
+           ============================================ */
+        .badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.6rem 1.2rem;
+            border: 1px solid var(--border-strong);
+            border-radius: 100px;
+            font-size: 0.85rem;
+            font-weight: 500;
+            color: var(--accent);
+            background: var(--accent-glow);
+            letter-spacing: 0.01em;
         }
-        .quote p {
+
+        /* ============================================
+           HERO
+           ============================================ */
+        .hero {
+            padding: 5rem 0 3rem;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: clamp(2rem, 5vw, 3.2rem);
+            font-weight: 600;
+            margin: 2rem auto 1.5rem;
+            max-width: 700px;
+            line-height: 1.15;
+        }
+
+        .hero .intro {
+            font-size: 1.05rem;
+            color: var(--text-secondary);
+            max-width: 560px;
+            margin: 0 auto;
+            line-height: 1.8;
+        }
+
+        /* ============================================
+           QUOTE
+           ============================================ */
+        .quote-section {
+            padding: 3rem 0;
+        }
+
+        .quote-block {
+            position: relative;
+            background: var(--bg-quote);
+            border: 1px solid var(--border);
+            border-radius: 2px;
+            padding: 2.5rem 2rem;
+            max-width: 640px;
+            margin: 0 auto;
+        }
+
+        .quote-block::before {
+            content: '"';
+            position: absolute;
+            top: -0.2em;
+            left: 1rem;
+            font-family: 'Cormorant Garamond', Georgia, serif;
+            font-size: 5rem;
+            color: var(--accent);
+            opacity: 0.3;
+            line-height: 1;
+        }
+
+        .quote-text {
+            font-family: 'Cormorant Garamond', Georgia, serif;
+            font-size: 1.4rem;
             font-style: italic;
-            color: #333;
-            margin-bottom: 0.5rem;
+            font-weight: 400;
+            line-height: 1.6;
+            color: var(--text-primary);
+            position: relative;
+            z-index: 1;
         }
-        .quote .author {
-            font-size: 0.9em;
-            color: #666;
+
+        .quote-author {
+            display: block;
+            margin-top: 1.2rem;
+            font-family: 'Outfit', sans-serif;
+            font-size: 0.85rem;
+            font-weight: 400;
+            color: var(--text-muted);
             font-style: normal;
         }
-        .section {
-            margin: 2.5rem 0;
-        }
-        .section h2 {
-            font-size: 1.3em;
-            font-weight: 600;
-            margin-bottom: 1rem;
-            color: #1a1a2e;
-        }
-        .section p, .faq-answer, .what-others-do li {
-            color: #555;
-            font-size: 1em;
-        }
-        .highlight-box {
-            background: linear-gradient(135deg, #e8f5e9 0%, #c8e6c9 100%);
-            border-radius: 12px;
-            padding: 1.5rem;
-            margin: 2rem 0;
-            border: 1px solid #a5d6a7;
-        }
-        .highlight-box h3 {
-            font-size: 1.1em;
-            margin-bottom: 0.8rem;
-            color: #2e7d32;
-        }
-        .highlight-box p {
-            color: #1b5e20;
-        }
-        .signup-box {
-            background: linear-gradient(135deg, #fff 0%, #f8f9ff 100%);
-            border: 2px solid #3b82f6;
-            border-radius: 16px;
-            padding: 2rem;
-            margin: 3rem 0;
-            text-align: center;
-            box-shadow: 0 4px 20px rgba(102, 126, 234, 0.15);
-        }
-        .signup-box h2 {
-            font-size: 1.4em;
-            margin-bottom: 0.5rem;
-            color: #1a1a2e;
-        }
-        .signup-box .limited {
-            color: #666;
-            margin-bottom: 1.5rem;
-        }
-        .signup-box .limited strong {
-            color: #e53935;
-        }
-        .btn-submit {
+
+        .quote-author::before {
+            content: '';
             display: inline-block;
-            width: 100%;
-            max-width: 400px;
-            padding: 1rem;
-            font-size: 1.05em;
+            width: 24px;
+            height: 1px;
+            background: var(--accent);
+            vertical-align: middle;
+            margin-right: 0.8rem;
+        }
+
+        /* ============================================
+           CONTENT SECTIONS
+           ============================================ */
+        .content-section {
+            padding: 2rem 0;
+        }
+
+        .content-section h2 {
+            font-size: clamp(1.5rem, 3vw, 2rem);
+            margin-bottom: 1rem;
+        }
+
+        .content-section p {
+            color: var(--text-secondary);
+            line-height: 1.85;
+        }
+
+        /* ============================================
+           HIGHLIGHT BOX
+           ============================================ */
+        .highlight-box {
+            border: 1px solid var(--border-strong);
+            border-left: 3px solid var(--accent);
+            background: var(--accent-glow);
+            padding: 2rem;
+            border-radius: 0 8px 8px 0;
+            margin: 3rem 0;
+        }
+
+        .highlight-box h3 {
+            font-family: 'Cormorant Garamond', Georgia, serif;
+            font-size: 1.3rem;
             font-weight: 600;
-            background: #3b82f6;
-            color: #fff;
-            border: none;
-            border-radius: 8px;
-            cursor: pointer;
-            transition: transform 0.2s, box-shadow 0.2s;
-            text-decoration: none;
+            color: var(--accent);
+            margin-bottom: 0.8rem;
+        }
+
+        .highlight-box p {
+            color: var(--text-secondary);
+            line-height: 1.8;
+        }
+
+        /* ============================================
+           HOW IT WORKS — STEPS
+           ============================================ */
+        .steps-section {
+            padding: 4rem 0;
             text-align: center;
         }
-        .btn-submit:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+
+        .steps-section h2 {
+            font-size: clamp(1.6rem, 3vw, 2.2rem);
+            margin-bottom: 3rem;
         }
-        .promise {
-            font-size: 0.9em;
-            color: #888;
-            margin-top: 1rem;
+
+        .steps-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 2.5rem;
         }
-        .what-others-do {
-            background: #fff;
-            border: 1px solid #e8e8e8;
-            border-radius: 12px;
-            padding: 1.5rem;
-            margin: 2rem 0;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.04);
+
+        @media (min-width: 640px) {
+            .steps-grid {
+                grid-template-columns: repeat(3, 1fr);
+                gap: 2rem;
+            }
         }
-        .what-others-do h3 {
-            font-size: 1.1em;
-            margin-bottom: 1rem;
-            color: #1a1a2e;
-        }
-        .what-others-do ul {
-            list-style: none;
-        }
-        .what-others-do li {
-            padding: 0.5rem 0;
-            padding-left: 2rem;
+
+        .step {
             position: relative;
+            padding: 2rem 1.5rem;
+            border: 1px solid var(--border-card);
+            border-radius: 12px;
+            background: var(--bg-card);
+            transition: all 0.4s cubic-bezier(0.22, 1, 0.36, 1);
         }
-        .what-others-do li:before {
-            content: "✓";
+
+        .step:hover {
+            border-color: var(--border-strong);
+            background: var(--bg-card-hover);
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-md);
+        }
+
+        .step-number {
+            font-family: 'Cormorant Garamond', Georgia, serif;
+            font-size: 3rem;
+            font-weight: 700;
+            color: var(--accent);
+            line-height: 1;
+            margin-bottom: 0.8rem;
+            opacity: 0.7;
+        }
+
+        .step-title {
+            font-family: 'Cormorant Garamond', Georgia, serif;
+            font-size: 1.4rem;
+            font-weight: 600;
+            margin-bottom: 0.6rem;
+            color: var(--text-primary);
+        }
+
+        .step-desc {
+            font-size: 0.95rem;
+            color: var(--text-secondary);
+            line-height: 1.7;
+        }
+
+        /* ============================================
+           USE CASES
+           ============================================ */
+        .use-cases {
+            background: var(--bg-secondary);
+            border-top: 1px solid var(--border);
+            border-bottom: 1px solid var(--border);
+            padding: 4rem 0;
+        }
+
+        .use-cases h3 {
+            font-family: 'Cormorant Garamond', Georgia, serif;
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+
+        .use-cases-list {
+            list-style: none;
+            max-width: 560px;
+            margin: 0 auto;
+            columns: 1;
+        }
+
+        @media (min-width: 640px) {
+            .use-cases-list {
+                columns: 2;
+                column-gap: 2.5rem;
+            }
+        }
+
+        .use-cases-list li {
+            padding: 0.6rem 0;
+            padding-left: 1.8rem;
+            position: relative;
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            break-inside: avoid;
+        }
+
+        .use-cases-list li::before {
+            content: '→';
             position: absolute;
             left: 0;
-            color: #4caf50;
-            font-weight: bold;
+            color: var(--accent);
+            font-weight: 500;
         }
-        footer {
-            margin-top: 4rem;
-            padding-top: 2rem;
-            border-top: 1px solid #eee;
+
+        /* ============================================
+           URGENCY BOX
+           ============================================ */
+        .urgency-box {
+            border: 1px solid rgba(212, 160, 32, 0.3);
+            background: var(--amber-bg);
+            border-radius: 12px;
+            padding: 2rem;
             text-align: center;
-            color: #888;
-            font-size: 0.9em;
-        }
-        footer a {
-            color: #3b82f6;
-            text-decoration: none;
-        }
-        footer a:hover {
-            text-decoration: underline;
-        }
-        .faq {
             margin: 3rem 0;
+            position: relative;
+            overflow: hidden;
         }
-        .faq h2 {
-            font-size: 1.5em;
-            font-weight: 700;
-            margin-bottom: 1.5rem;
-            color: #1a1a2e;
+
+        .urgency-box::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, var(--amber), transparent);
         }
-        .faq-item {
-            border-bottom: 1px solid #eee;
-            padding: 1rem 0;
-        }
-        .faq-item:last-child {
-            border-bottom: none;
-        }
-        .faq-question {
-            font-weight: 600;
-            color: #1a1a2e;
+
+        .urgency-box h3 {
+            font-family: 'Cormorant Garamond', Georgia, serif;
+            font-size: 1.3rem;
+            color: var(--amber);
             margin-bottom: 0.5rem;
+        }
+
+        .urgency-box p {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+        }
+
+        .urgency-box strong {
+            color: var(--text-primary);
+        }
+
+        .urgency-box .urgency-timer {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            margin-top: 0.5rem;
+        }
+
+        /* ============================================
+           CTA / SIGNUP BOX
+           ============================================ */
+        .cta-section {
+            padding: 4rem 0;
+            text-align: center;
+        }
+
+        .cta-box {
+            border: 1px solid var(--border-strong);
+            border-radius: 16px;
+            padding: 3rem 2rem;
+            background: var(--bg-card);
+            position: relative;
+            overflow: hidden;
+            animation: pulseGlow 4s ease-in-out infinite;
+        }
+
+        .cta-box::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: linear-gradient(90deg, transparent 0%, var(--accent) 50%, transparent 100%);
+        }
+
+        .cta-box h2 {
+            font-size: clamp(1.6rem, 3vw, 2.2rem);
+            margin-bottom: 0.8rem;
+        }
+
+        .cta-box .cta-subtitle {
+            color: var(--text-secondary);
+            margin-bottom: 2rem;
+            font-size: 1rem;
+            line-height: 1.7;
+        }
+
+        .cta-box .cta-subtitle strong {
+            color: var(--red);
+        }
+
+        .btn-primary {
+            display: inline-block;
+            padding: 1rem 2.5rem;
+            font-family: 'Outfit', sans-serif;
+            font-size: 1.05rem;
+            font-weight: 600;
+            letter-spacing: 0.02em;
+            color: var(--text-on-accent);
+            background: var(--accent);
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            text-decoration: none;
+            transition: all 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn-primary::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 200%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.15), transparent);
+            animation: shimmer 3s ease-in-out infinite;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-accent);
+            color: var(--text-on-accent);
+        }
+
+        .btn-primary:active {
+            transform: translateY(0);
+        }
+
+        .cta-promise {
+            margin-top: 1.2rem;
+            font-size: 0.85rem;
+            color: var(--text-muted);
+        }
+
+        .cta-promise .check {
+            color: var(--green);
+        }
+
+        /* ============================================
+           PRICING
+           ============================================ */
+        .pricing-section {
+            padding: 4rem 0;
+        }
+
+        .pricing-section > .container > h2 {
+            font-size: clamp(1.6rem, 3vw, 2.2rem);
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 1.5rem;
+        }
+
+        @media (min-width: 768px) {
+            .pricing-grid {
+                grid-template-columns: repeat(3, 1fr);
+                gap: 1.5rem;
+                align-items: stretch;
+            }
+        }
+
+        .pricing-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-card);
+            border-radius: 16px;
+            padding: 2rem 1.5rem;
+            display: flex;
+            flex-direction: column;
+            transition: all 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+            position: relative;
+        }
+
+        .pricing-card:hover {
+            border-color: var(--border-strong);
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-md);
+        }
+
+        .pricing-card.popular {
+            border-color: var(--accent);
+            box-shadow: var(--shadow-accent);
+        }
+
+        .pricing-card.popular:hover {
+            box-shadow: 0 8px 40px rgba(201, 168, 76, 0.25);
+        }
+
+        .popular-badge {
+            position: absolute;
+            top: -1px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--accent);
+            color: var(--text-on-accent);
+            padding: 0.25rem 1rem;
+            border-radius: 0 0 8px 8px;
+            font-size: 0.7rem;
+            font-weight: 700;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+        }
+
+        .card-name {
+            font-family: 'Outfit', sans-serif;
+            font-size: 0.8rem;
+            font-weight: 600;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: var(--text-muted);
+            margin-bottom: 0.5rem;
+        }
+
+        .card-title {
+            font-family: 'Cormorant Garamond', Georgia, serif;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 0.3rem;
+        }
+
+        .card-price {
+            font-family: 'Cormorant Garamond', Georgia, serif;
+            font-size: 3rem;
+            font-weight: 700;
+            color: var(--accent);
+            line-height: 1.1;
+            margin: 1rem 0;
+        }
+
+        .card-price span {
+            font-family: 'Outfit', sans-serif;
+            font-size: 0.85rem;
+            font-weight: 400;
+            color: var(--text-muted);
+        }
+
+        .card-subtitle {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            margin-bottom: 1.5rem;
+        }
+
+        .card-features {
+            list-style: none;
+            margin-bottom: 2rem;
+            flex-grow: 1;
+        }
+
+        .card-features li {
+            padding: 0.35rem 0;
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            padding-left: 1.6rem;
+            position: relative;
+        }
+
+        .card-features li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: var(--green);
+            font-weight: 600;
+        }
+
+        .card-features li.disabled {
+            color: var(--text-muted);
+            opacity: 0.5;
+        }
+
+        .card-features li.disabled::before {
+            content: '—';
+            color: var(--text-muted);
+        }
+
+        .btn-card {
+            display: block;
+            width: 100%;
+            padding: 0.85rem;
+            font-family: 'Outfit', sans-serif;
+            font-size: 0.95rem;
+            font-weight: 600;
+            border: none;
+            border-radius: 6px;
+            text-decoration: none;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-top: auto;
+        }
+
+        .btn-card-default {
+            background: transparent;
+            color: var(--accent);
+            border: 1px solid var(--border-strong);
+        }
+
+        .btn-card-default:hover {
+            background: var(--accent-glow);
+            color: var(--accent);
+            transform: translateY(-1px);
+        }
+
+        .btn-card-primary {
+            background: var(--accent);
+            color: var(--text-on-accent);
+        }
+
+        .btn-card-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-accent);
+            color: var(--text-on-accent);
+        }
+
+        .pricing-footer {
+            text-align: center;
+            margin-top: 2.5rem;
+            padding-top: 2rem;
+            border-top: 1px solid var(--border);
+        }
+
+        .pricing-footer p {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            line-height: 1.9;
+        }
+
+        .pricing-footer strong {
+            color: var(--text-primary);
+            font-weight: 600;
+        }
+
+        .pricing-footer .check {
+            color: var(--green);
+        }
+
+        /* ============================================
+           FAQ
+           ============================================ */
+        .faq-section {
+            padding: 4rem 0;
+        }
+
+        .faq-section h2 {
+            font-size: clamp(1.6rem, 3vw, 2.2rem);
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .faq-list {
+            max-width: 680px;
+            margin: 0 auto;
+        }
+
+        .faq-item {
+            border-bottom: 1px solid var(--border);
+            overflow: hidden;
+        }
+
+        .faq-question {
+            padding: 1.3rem 0;
+            font-family: 'Outfit', sans-serif;
+            font-weight: 600;
+            font-size: 1rem;
+            color: var(--text-primary);
             cursor: pointer;
             display: flex;
             justify-content: space-between;
             align-items: center;
+            transition: color 0.3s ease;
+            user-select: none;
         }
-        .faq-question::after {
-            content: "+";
-            font-size: 1.2em;
-            color: #3b82f6;
+
+        .faq-question:hover {
+            color: var(--accent);
+        }
+
+        .faq-toggle {
             flex-shrink: 0;
-            margin-left: 1rem;
-        }
-        .faq-item.open .faq-question::after {
-            content: "−";
-        }
-        .faq-answer {
-            line-height: 1.6;
-            display: none;
-            padding-top: 0.5rem;
-        }
-        .faq-item.open .faq-answer {
-            display: block;
-        }
-
-        /* ===== HOW IT WORKS ===== */
-        .how-it-works {
-            margin: 3rem 0;
-            text-align: center;
-        }
-        .how-it-works h2 {
-            font-size: 1.5em;
-            margin-bottom: 2rem;
-            color: #1a1a2e;
-        }
-        .steps-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 2rem;
-        }
-        @media (max-width: 500px) {
-            .steps-grid {
-                grid-template-columns: 1fr;
-                gap: 1.5rem;
-            }
-        }
-        .step-number {
-            font-size: 2.5em;
-            color: #3b82f6;
-            margin-bottom: 0.5rem;
-        }
-        .step-title {
-            font-size: 1.2em;
-            margin-bottom: 0.5rem;
-            color: #1a1a2e;
-            font-weight: 600;
-        }
-        .step-desc {
-            color: #555;
-            font-size: 1em;
-        }
-
-        /* ===== PRICING ===== */
-        .pricing-section h2 {
-            font-size: 1.5em;
-            text-align: center;
-            margin-bottom: 2rem;
-            color: #1a1a2e;
-        }
-        .pricing-grid {
-            display: grid;
-            gap: 1.5rem;
-            grid-template-columns: 1fr;
-        }
-        @media (min-width: 768px) {
-            .pricing-grid {
-                grid-template-columns: repeat(3, 1fr);
-            }
-        }
-        .pricing-card {
-            background: #fff;
-            border: 2px solid #e0e0e0;
-            border-radius: 16px;
-            padding: 1.5rem;
-            text-align: center;
+            width: 28px;
+            height: 28px;
+            border: 1px solid var(--border-strong);
+            border-radius: 50%;
             display: flex;
-            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            font-size: 1rem;
+            color: var(--accent);
+            margin-left: 1rem;
+            transition: all 0.3s ease;
         }
-        .pricing-card.popular {
-            border-color: #3b82f6;
-            position: relative;
-            box-shadow: 0 4px 20px rgba(59, 130, 246, 0.2);
+
+        .faq-item.open .faq-toggle {
+            background: var(--accent);
+            color: var(--text-on-accent);
+            border-color: var(--accent);
+            transform: rotate(45deg);
         }
-        .popular-badge {
-            position: absolute;
-            top: -12px;
-            left: 50%;
-            transform: translateX(-50%);
-            background: #3b82f6;
-            color: #fff;
-            padding: 0.3rem 1rem;
-            border-radius: 20px;
-            font-size: 0.8em;
-            font-weight: 600;
+
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.5s cubic-bezier(0.22, 1, 0.36, 1), padding 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+            padding: 0 0;
         }
-        .pricing-card .card-title {
-            font-size: 1.3em;
-            font-weight: 700;
-            margin-bottom: 0.5rem;
-            color: #1a1a2e;
-        }
-        .pricing-card .price {
-            font-size: 2.5em;
-            font-weight: 800;
-            color: #3b82f6;
-            margin: 1rem 0;
-        }
-        .pricing-card .price span {
-            font-size: 0.4em;
-            font-weight: 400;
-            color: #666;
-        }
-        .pricing-card .subtitle {
-            font-size: 0.9em;
-            color: #666;
-            margin-bottom: 1.5rem;
-        }
-        .pricing-card ul {
-            list-style: none;
-            text-align: left;
-            margin-bottom: 1.5rem;
-            flex-grow: 1;
-        }
-        .pricing-card li {
-            padding: 0.4rem 0;
-        }
-        .pricing-card li.disabled {
-            color: #bbb;
-        }
-        .btn-card {
-            display: block;
-            width: 100%;
-            padding: 0.8rem;
-            font-size: 1em;
-            font-weight: 600;
-            border: none;
-            border-radius: 8px;
-            text-decoration: none;
-            text-align: center;
-            margin-top: auto;
-            transition: transform 0.2s, box-shadow 0.2s;
-        }
-        .btn-card:hover {
-            transform: translateY(-1px);
-        }
-        .btn-card-default {
-            background: #f5f5f5;
-            color: #333;
-        }
-        .btn-card-primary {
-            background: #3b82f6;
-            color: #fff;
-        }
-        .btn-card-primary:hover {
-            box-shadow: 0 4px 15px rgba(59, 130, 246, 0.3);
-        }
-        .pricing-footer {
-            text-align: center;
-            margin-top: 1.5rem;
-            color: #555;
+
+        .faq-answer-inner {
+            padding-bottom: 1.5rem;
+            color: var(--text-secondary);
+            font-size: 0.95rem;
             line-height: 1.8;
         }
 
-        /* ===== URGENCY BOX ===== */
-        .urgency-box {
-            background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
-            border: 2px solid #f59e0b;
-            border-radius: 16px;
-            padding: 1.5rem;
-            margin: 2rem 0;
-            text-align: center;
+        .faq-answer-inner ul {
+            margin: 0.5rem 0;
+            padding-left: 1.2rem;
         }
-        .urgency-box h3 {
-            color: #92400e;
-            margin-bottom: 0.5rem;
-        }
-        .urgency-box p {
-            color: #78350f;
+        .faq-answer-inner li {
+            padding: 0.15rem 0;
         }
 
-        /* Responsive */
-        @media (max-width: 600px) {
-            h1 { font-size: 1.7em; }
-            .container { padding: 2rem 1rem; }
+        .faq-item.open .faq-answer {
+            max-height: 600px;
         }
-        .site-title {
-            font-size: clamp(1.8rem, 8vw, 3.5rem);
+
+        /* ============================================
+           FOOTER
+           ============================================ */
+        .site-footer {
+            border-top: 1px solid var(--border);
+            padding: 3rem 0;
+            text-align: center;
+        }
+
+        .footer-links {
+            margin-bottom: 1rem;
+        }
+
+        .footer-links a {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            transition: color 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            color: var(--accent);
+        }
+
+        .footer-links .sep {
+            color: var(--text-muted);
+            opacity: 0.3;
+            margin: 0 0.8rem;
+        }
+
+        .footer-email {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            margin-top: 0.5rem;
+        }
+
+        .footer-copyright {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            opacity: 0.5;
+            margin-top: 1rem;
+        }
+
+        /* ============================================
+           OPEN SOURCE NOTE
+           ============================================ */
+        .oss-note {
+            text-align: center;
+            padding: 2rem 0;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            line-height: 1.8;
+            max-width: 520px;
+            margin: 0 auto;
+        }
+
+        /* ============================================
+           RESPONSIVE ADJUSTMENTS
+           ============================================ */
+        @media (max-width: 600px) {
+            .hero { padding: 3rem 0 2rem; }
+            .section-spacer { height: 3rem; }
+            .cta-box { padding: 2rem 1.5rem; }
+            .pricing-card { padding: 1.5rem 1.2rem; }
+            .steps-section { padding: 3rem 0; }
+        }
+
+        /* ============================================
+           GEOMETRIC ACCENT — decorative line elements
+           ============================================ */
+        .geo-line {
+            display: block;
+            width: 60px;
+            height: 1px;
+            background: var(--accent);
+            margin: 1.5rem auto;
+            opacity: 0.4;
+        }
+
+        .geo-line--left {
+            margin-left: 0;
+        }
+
+        /* ============================================
+           SCROLL INDICATOR
+           ============================================ */
+        .scroll-progress {
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 2px;
+            background: var(--accent);
+            z-index: 10000;
+            transition: width 0.1s linear;
+            width: 0%;
         }
     </style>
 </head>
 <body>
-    <!-- Header -->
-    <header style="background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%); padding: 2rem 1rem; text-align: center; margin-bottom: 0;">
-        <h1 class="site-title" style="font-weight: 800; color: white; margin: 0; letter-spacing: -1px; text-shadow: 2px 2px 4px rgba(0,0,0,0.2);">
-            GetOpenClaw.nl
-        </h1>
-        <p style="color: rgba(255,255,255,0.9); font-size: 1.2em; margin-top: 0.5rem;">
-            Jouw AI-assistent, veilig opgezet
-        </p>
-    </header>
-    
-    <div class="container">
-        <div class="badge">📺 Zoals recent gedemonstreerd door Alexander Klöpping bij Eva Jinek op NPO1</div>
-        
-        <h1>Je eigen digitale medewerker. Veilig opgezet, klaar om te ontdekken.</h1>
-        
-        <p class="intro">
-            Stel je voor: een assistent die taken uitvoert terwijl jij andere dingen doet. 
-            Research, teksten schrijven, data analyseren — 24/7 beschikbaar. 
-            Dat is OpenClaw. En wij zetten het veilig voor je op.
-        </p>
+    <!-- Scroll progress bar -->
+    <div class="scroll-progress" id="scrollProgress"></div>
 
-        <div class="quote">
-            <p>"Ik zet dit op een aparte computer die geen verbinding heeft met mijn echte e-mail."</p>
-            <span class="author">— Alexander Klöpping over AI-assistenten, Eva Jinek (NPO1)</span>
+    <!-- Theme toggle -->
+    <button class="theme-toggle" id="themeToggle" aria-label="Wissel thema">🌙</button>
+
+    <!-- ====== HEADER ====== -->
+    <header class="site-header">
+        <div class="container">
+            <div class="reveal reveal-d1">
+                <h1 class="site-name text-gradient">GetOpenClaw.nl</h1>
+                <p class="site-tagline">Jouw AI-assistent, veilig opgezet</p>
+            </div>
         </div>
+    </header>
 
-        <div class="section">
+    <!-- ====== HERO ====== -->
+    <section class="hero">
+        <div class="container">
+            <div class="reveal reveal-d2">
+                <div class="badge">📺 Zoals recent gedemonstreerd door Alexander Klöpping bij Eva Jinek op NPO1</div>
+            </div>
+            
+            <h1 class="reveal reveal-d3">Je eigen digitale medewerker.<br><span class="text-accent">Veilig opgezet, klaar om te ontdekken.</span></h1>
+            
+            <p class="intro reveal reveal-d4">
+                Stel je voor: een assistent die taken uitvoert terwijl jij andere dingen doet. 
+                Research, teksten schrijven, data analyseren — 24/7 beschikbaar. 
+                Dat is OpenClaw. En wij zetten het veilig voor je op.
+            </p>
+
+            <span class="geo-line reveal reveal-d5"></span>
+        </div>
+    </section>
+
+    <!-- ====== QUOTE ====== -->
+    <section class="quote-section">
+        <div class="container scroll-reveal">
+            <div class="quote-block">
+                <p class="quote-text">"Ik zet dit op een aparte computer die geen verbinding heeft met mijn echte e-mail."</p>
+                <span class="quote-author">Alexander Klöpping over AI-assistenten, Eva Jinek (NPO1)</span>
+            </div>
+        </div>
+    </section>
+
+    <div class="section-spacer"></div>
+
+    <!-- ====== WHY VIRTUAL SERVER ====== -->
+    <section class="content-section">
+        <div class="container scroll-reveal">
+            <span class="label">Veiligheid voorop</span>
             <h2>Precies. Daarom een virtuele server.</h2>
             <p>
                 Wij richten een veilige werkplek voor je in. Geen toegang tot je persoonlijke computer. 
                 Geen risico's met je eigen accounts. Gewoon een plek om te ontdekken wat dit voor jou kan betekenen.
             </p>
         </div>
+    </section>
 
-        <div class="highlight-box">
+    <!-- ====== HIGHLIGHT ====== -->
+    <div class="container">
+        <div class="highlight-box scroll-reveal">
             <h3>Wij zijn de IT-afdeling voor je digitale collega</h3>
             <p>
                 Je hoeft niets technisch te weten. Wij regelen de server, de configuratie, alles. 
                 Jij krijgt een werkende omgeving en kunt direct aan de slag.
             </p>
         </div>
+    </div>
 
-        <!-- Hoe het werkt -->
-        <div class="how-it-works">
-            <h2>Hoe het werkt</h2>
+    <div class="divider"></div>
+
+    <!-- ====== HOW IT WORKS ====== -->
+    <section class="steps-section">
+        <div class="container container--wide">
+            <span class="label scroll-reveal">Drie stappen</span>
+            <h2 class="scroll-reveal">Hoe het werkt</h2>
+            
             <div class="steps-grid">
-                <div>
-                    <div class="step-number">①</div>
+                <div class="step scroll-reveal" style="transition-delay: 0.1s;">
+                    <div class="step-number">01</div>
                     <div class="step-title">Aanmelden</div>
                     <p class="step-desc">Vul het formulier in met je wensen. Wij nemen contact op om alles door te spreken.</p>
                 </div>
-                <div>
-                    <div class="step-number">②</div>
+                <div class="step scroll-reveal" style="transition-delay: 0.2s;">
+                    <div class="step-number">02</div>
                     <div class="step-title">Wij bouwen</div>
                     <p class="step-desc">Binnen 48 uur staat je eigen server klaar — volledig geconfigureerd en beveiligd.</p>
                 </div>
-                <div>
-                    <div class="step-number">③</div>
+                <div class="step scroll-reveal" style="transition-delay: 0.3s;">
+                    <div class="step-number">03</div>
                     <div class="step-title">Jij praat</div>
                     <p class="step-desc">Je stuurt berichten via Telegram of WhatsApp, en je AI-assistent gaat aan het werk.</p>
                 </div>
             </div>
         </div>
+    </section>
 
-        <div class="what-others-do">
-            <h3>Waar mensen het voor gebruiken:</h3>
-            <ul>
+    <div class="divider"></div>
+
+    <!-- ====== USE CASES ====== -->
+    <section class="use-cases">
+        <div class="container scroll-reveal">
+            <h3>Waar mensen het voor gebruiken</h3>
+            <ul class="use-cases-list">
                 <li>Research en informatie verzamelen</li>
                 <li>Teksten schrijven, redigeren en vertalen</li>
                 <li>Agenda en afspraken beheren</li>
@@ -528,187 +1264,308 @@
                 <li>Herinneringen en follow-ups bijhouden</li>
             </ul>
         </div>
+    </section>
 
-        <!-- Urgency Box -->
-        <div class="urgency-box">
+    <div class="section-spacer"></div>
+
+    <!-- ====== URGENCY ====== -->
+    <div class="container">
+        <div class="urgency-box scroll-reveal">
             <h3>Launch Aanbieding</h3>
             <p>De eerste <strong>10 klanten</strong> krijgen gratis security hardening (t.w.v. €48) bij elk pakket.</p>
-            <p style="font-size: 0.9em; color: #92400e; margin-top: 0.5rem;">⏰ Zolang er plekken beschikbaar zijn</p>
-        </div>
-
-        <div class="signup-box">
-            <h2>Direct aan de slag?</h2>
-            <p class="limited">Vul het formulier in en we nemen binnen 24 uur contact op.<br>
-            Geen technische kennis nodig — wij regelen alles.</p>
-            
-            <a href="https://tally.so/r/7RxP0R" target="_blank" class="btn-submit">Start mijn aanvraag →</a>
-            
-            <p class="promise">✅ 14 dagen niet-goed-geld-terug garantie</p>
-        </div>
-
-        <!-- Pricing Section -->
-        <div class="pricing-section" id="prijzen">
-            <h2>Kies je pakket</h2>
-            
-            <div class="pricing-grid">
-                <!-- Basis -->
-                <div class="pricing-card">
-                    <div class="card-title">Basis</div>
-                    <div class="price">€149 <span>eenmalig</span></div>
-                    <div class="subtitle">Perfect om te starten</div>
-                    <ul>
-                        <li>✓ OpenClaw volledig geïnstalleerd</li>
-                        <li>✓ Virtuele server (VPS) ingericht</li>
-                        <li>✓ Telegram-integratie</li>
-                        <li>✓ Basis configuratie</li>
-                        <li>✓ Handleiding om te starten</li>
-                        <li class="disabled">— Security hardening</li>
-                        <li class="disabled">— Voice calling</li>
-                        <li class="disabled">— Priority support</li>
-                    </ul>
-                    <a href="https://tally.so/r/7RxP0R" class="btn-card btn-card-default">Aanvragen</a>
-                </div>
-                
-                <!-- Basis Plus -->
-                <div class="pricing-card popular">
-                    <div class="popular-badge">Populair</div>
-                    <div class="card-title">Basis Plus</div>
-                    <div class="price">€197 <span>eenmalig</span></div>
-                    <div class="subtitle">Veilig en professioneel</div>
-                    <ul>
-                        <li>✓ Alles van Basis</li>
-                        <li>✓ Security audit</li>
-                        <li>✓ Firewall configuratie</li>
-                        <li>✓ Automatische backups</li>
-                        <li>✓ Fail2ban bescherming</li>
-                        <li>✓ Email support</li>
-                        <li class="disabled">— Voice calling</li>
-                        <li class="disabled">— Custom integraties</li>
-                    </ul>
-                    <a href="https://tally.so/r/7RxP0R" class="btn-card btn-card-primary">Aanvragen</a>
-                </div>
-                
-                <!-- Pro -->
-                <div class="pricing-card">
-                    <div class="card-title">Pro</div>
-                    <div class="price">€497 <span>eenmalig</span></div>
-                    <div class="subtitle">Voor power users</div>
-                    <ul>
-                        <li>✓ Alles van Basis Plus</li>
-                        <li>✓ Voice calling setup</li>
-                        <li>✓ Meerdere chat-kanalen</li>
-                        <li>✓ Custom integratie (1x)</li>
-                        <li>✓ Priority support (30 dagen)</li>
-                        <li>✓ Updates hulp (3 maanden)</li>
-                        <li>✓ Persoonlijke onboarding</li>
-                        <li>✓ Backup monitoring dashboard</li>
-                    </ul>
-                    <a href="https://tally.so/r/7RxP0R" class="btn-card btn-card-default">Aanvragen</a>
-                </div>
-            </div>
-            
-            <div class="pricing-footer">
-                <p><strong>Maandelijkse gebruikskosten (apart, direct bij de providers):</strong></p>
-                <p>Hosting: ~€10-20 · AI-tokens: ~€20-50 · Bellen: ~€5-10</p>
-                <p>Afhankelijk van je gebruik en gekozen pakket.</p>
-                <p style="margin-top: 0.5rem;">✅ Geen verborgen kosten. Geen abonnement bij ons.</p>
-                <p>✅ 14 dagen niet-goed-geld-terug garantie op alle pakketten.</p>
-            </div>
-        </div>
-
-        <div class="faq">
-            <h2>Veelgestelde vragen</h2>
-            
-            <div class="faq-item open">
-                <div class="faq-question">Wat is OpenClaw?</div>
-                <div class="faq-answer">
-                    OpenClaw (voorheen Clawdbot) is een AI-assistent die zelfstandig taken kan uitvoeren. 
-                    Denk aan teksten schrijven, research doen, bestanden organiseren, data analyseren — terwijl jij andere dingen doet. 
-                    Het is open source software, gebouwd bovenop Claude van Anthropic.
-                </div>
-            </div>
-            
-            <div class="faq-item">
-                <div class="faq-question">Is het veilig?</div>
-                <div class="faq-answer">
-                    Wij zetten OpenClaw op een <strong>virtuele server</strong> die losstaat van je persoonlijke computer en accounts. 
-                    Precies zoals Alexander Klöpping adviseerde. Zo kun je experimenteren zonder risico voor je eigen data.
-                    De software zelf is open source — iedereen kan de code controleren.
-                </div>
-            </div>
-            
-            <div class="faq-item">
-                <div class="faq-question">Wat kost het?</div>
-                <div class="faq-answer">
-                    Wij bieden drie pakketten aan: Basis (€149), Basis Plus (€197) en Pro (€497) — eenmalige setup-kosten.
-                    Daarnaast heb je maandelijkse gebruikskosten, gemiddeld <strong>€30-80 per maand</strong>, afhankelijk van je keuze voor hosting, AI-abonnement en eventueel bel-abonnement.
-                    <br><br>
-                    <strong>Geen verborgen kosten, geen abonnement bij ons.</strong> Je betaalt de providers rechtstreeks.
-                </div>
-            </div>
-            
-            <div class="faq-item">
-                <div class="faq-question">Hoe lang duurt de setup?</div>
-                <div class="faq-answer">
-                    Meestal is je omgeving binnen <strong>24-48 uur</strong> klaar. 
-                    We regelen de server, installeren alle software, configureren alles, en geven je een werkende omgeving met instructies om te starten.
-                </div>
-            </div>
-            
-            <div class="faq-item">
-                <div class="faq-question">Heb ik technische kennis nodig?</div>
-                <div class="faq-answer">
-                    Nee. Als je kunt chatten, kun je dit gebruiken. Wij doen het technische werk — jij krijgt een simpele chat-interface om met je AI-assistent te praten via Telegram, WhatsApp of andere kanalen.
-                    <br><br>
-                    Naarmate je meer ontdekt, kun je functies toevoegen. Daar helpen we je ook bij.
-                </div>
-            </div>
-            
-            <div class="faq-item">
-                <div class="faq-question">Wat kan ik ermee?</div>
-                <div class="faq-answer">
-                    Heel veel! Mensen gebruiken hun AI-assistent voor:
-                    <ul style="margin: 0.5rem 0; padding-left: 1.2rem; list-style: disc;">
-                        <li>Research en samenvattingen van websites, artikelen of documenten</li>
-                        <li>Teksten schrijven: offertes, blogs, social media posts, nieuwsbrieven</li>
-                        <li>Administratie: facturen verwerken, overzichten maken</li>
-                        <li>Data-analyse: spreadsheets, rapportages, trends</li>
-                        <li>Agenda en planning: herinneringen, follow-ups</li>
-                        <li>Vertalen van teksten (meertalig)</li>
-                        <li>Brainstormen en strategie</li>
-                        <li>Bellen en voicemail afhandelen (Pro)</li>
-                    </ul>
-                    Het mooie is: je ontdekt gaandeweg wat voor jou het beste werkt.
-                </div>
-            </div>
-        </div>
-
-        <div class="section">
-            <p style="color: #777;">
-                Dit is open source software. Transparant, controleerbaar. 
-                Wij maken het toegankelijk voor mensen die willen ontdekken wat mogelijk is — 
-                zonder eerst een techneut te hoeven worden.
-            </p>
+            <p class="urgency-timer">⏰ Zolang er plekken beschikbaar zijn</p>
         </div>
     </div>
 
-    <footer>
-        <p>
-            <a href="https://getopenclaw.nl/privacy.html">Privacy & Voorwaarden</a> · 
-            <a href="https://github.com/openclaw/openclaw">OpenClaw op GitHub</a>
+    <!-- ====== CTA ====== -->
+    <section class="cta-section">
+        <div class="container scroll-reveal">
+            <div class="cta-box">
+                <h2>Direct aan de slag?</h2>
+                <p class="cta-subtitle">Vul het formulier in en we nemen binnen 24 uur contact op.<br>
+                Geen technische kennis nodig — wij regelen alles.</p>
+                
+                <a href="https://tally.so/r/7RxP0R" target="_blank" class="btn-primary">Start mijn aanvraag →</a>
+                
+                <p class="cta-promise"><span class="check">✅</span> 14 dagen niet-goed-geld-terug garantie</p>
+            </div>
+        </div>
+    </section>
+
+    <div class="divider"></div>
+
+    <!-- ====== PRICING ====== -->
+    <section class="pricing-section" id="prijzen">
+        <div class="container container--wide">
+            <h2 class="scroll-reveal">Kies je pakket</h2>
+            
+            <div class="pricing-grid">
+                <!-- Basis -->
+                <div class="pricing-card scroll-reveal" style="transition-delay: 0.1s;">
+                    <div class="card-name">Starter</div>
+                    <div class="card-title">Basis</div>
+                    <div class="card-price">€149 <span>eenmalig</span></div>
+                    <div class="card-subtitle">Perfect om te starten</div>
+                    <ul class="card-features">
+                        <li>OpenClaw volledig geïnstalleerd</li>
+                        <li>Virtuele server (VPS) ingericht</li>
+                        <li>Telegram-integratie</li>
+                        <li>Basis configuratie</li>
+                        <li>Handleiding om te starten</li>
+                        <li class="disabled">Security hardening</li>
+                        <li class="disabled">Voice calling</li>
+                        <li class="disabled">Priority support</li>
+                    </ul>
+                    <a href="https://tally.so/r/7RxP0R" target="_blank" class="btn-card btn-card-default">Aanvragen</a>
+                </div>
+                
+                <!-- Basis Plus -->
+                <div class="pricing-card popular scroll-reveal" style="transition-delay: 0.2s;">
+                    <div class="popular-badge">Populair</div>
+                    <div class="card-name">Aanbevolen</div>
+                    <div class="card-title">Basis Plus</div>
+                    <div class="card-price">€197 <span>eenmalig</span></div>
+                    <div class="card-subtitle">Veilig en professioneel</div>
+                    <ul class="card-features">
+                        <li>Alles van Basis</li>
+                        <li>Security audit</li>
+                        <li>Firewall configuratie</li>
+                        <li>Automatische backups</li>
+                        <li>Fail2ban bescherming</li>
+                        <li>Email support</li>
+                        <li class="disabled">Voice calling</li>
+                        <li class="disabled">Custom integraties</li>
+                    </ul>
+                    <a href="https://tally.so/r/7RxP0R" target="_blank" class="btn-card btn-card-primary">Aanvragen</a>
+                </div>
+                
+                <!-- Pro -->
+                <div class="pricing-card scroll-reveal" style="transition-delay: 0.3s;">
+                    <div class="card-name">Uitgebreid</div>
+                    <div class="card-title">Pro</div>
+                    <div class="card-price">€497 <span>eenmalig</span></div>
+                    <div class="card-subtitle">Voor power users</div>
+                    <ul class="card-features">
+                        <li>Alles van Basis Plus</li>
+                        <li>Voice calling setup</li>
+                        <li>Meerdere chat-kanalen</li>
+                        <li>Custom integratie (1x)</li>
+                        <li>Priority support (30 dagen)</li>
+                        <li>Updates hulp (3 maanden)</li>
+                        <li>Persoonlijke onboarding</li>
+                        <li>Backup monitoring dashboard</li>
+                    </ul>
+                    <a href="https://tally.so/r/7RxP0R" target="_blank" class="btn-card btn-card-default">Aanvragen</a>
+                </div>
+            </div>
+            
+            <div class="pricing-footer scroll-reveal">
+                <p><strong>Maandelijkse gebruikskosten (apart, direct bij de providers):</strong></p>
+                <p>Hosting: ~€10-20 · AI-tokens: ~€20-50 · Bellen: ~€5-10</p>
+                <p>Afhankelijk van je gebruik en gekozen pakket.</p>
+                <p style="margin-top: 0.8rem;"><span class="check">✅</span> Geen verborgen kosten. Geen abonnement bij ons.</p>
+                <p><span class="check">✅</span> 14 dagen niet-goed-geld-terug garantie op alle pakketten.</p>
+            </div>
+        </div>
+    </section>
+
+    <div class="divider"></div>
+
+    <!-- ====== FAQ ====== -->
+    <section class="faq-section">
+        <div class="container">
+            <span class="label scroll-reveal">Antwoorden</span>
+            <h2 class="scroll-reveal">Veelgestelde vragen</h2>
+            
+            <div class="faq-list">
+                <div class="faq-item open scroll-reveal">
+                    <div class="faq-question">
+                        <span>Wat is OpenClaw?</span>
+                        <span class="faq-toggle">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <div class="faq-answer-inner">
+                            OpenClaw (voorheen Clawdbot) is een AI-assistent die zelfstandig taken kan uitvoeren. 
+                            Denk aan teksten schrijven, research doen, bestanden organiseren, data analyseren — terwijl jij andere dingen doet. 
+                            Het is open source software, gebouwd bovenop Claude van Anthropic.
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="faq-item scroll-reveal">
+                    <div class="faq-question">
+                        <span>Is het veilig?</span>
+                        <span class="faq-toggle">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <div class="faq-answer-inner">
+                            Wij zetten OpenClaw op een <strong>virtuele server</strong> die losstaat van je persoonlijke computer en accounts. 
+                            Precies zoals Alexander Klöpping adviseerde. Zo kun je experimenteren zonder risico voor je eigen data.
+                            De software zelf is open source — iedereen kan de code controleren.
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="faq-item scroll-reveal">
+                    <div class="faq-question">
+                        <span>Wat kost het?</span>
+                        <span class="faq-toggle">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <div class="faq-answer-inner">
+                            Wij bieden drie pakketten aan: Basis (€149), Basis Plus (€197) en Pro (€497) — eenmalige setup-kosten.
+                            Daarnaast heb je maandelijkse gebruikskosten, gemiddeld <strong>€30-80 per maand</strong>, afhankelijk van je keuze voor hosting, AI-abonnement en eventueel bel-abonnement.
+                            <br><br>
+                            <strong>Geen verborgen kosten, geen abonnement bij ons.</strong> Je betaalt de providers rechtstreeks.
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="faq-item scroll-reveal">
+                    <div class="faq-question">
+                        <span>Hoe lang duurt de setup?</span>
+                        <span class="faq-toggle">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <div class="faq-answer-inner">
+                            Meestal is je omgeving binnen <strong>24-48 uur</strong> klaar. 
+                            We regelen de server, installeren alle software, configureren alles, en geven je een werkende omgeving met instructies om te starten.
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="faq-item scroll-reveal">
+                    <div class="faq-question">
+                        <span>Heb ik technische kennis nodig?</span>
+                        <span class="faq-toggle">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <div class="faq-answer-inner">
+                            Nee. Als je kunt chatten, kun je dit gebruiken. Wij doen het technische werk — jij krijgt een simpele chat-interface om met je AI-assistent te praten via Telegram, WhatsApp of andere kanalen.
+                            <br><br>
+                            Naarmate je meer ontdekt, kun je functies toevoegen. Daar helpen we je ook bij.
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="faq-item scroll-reveal">
+                    <div class="faq-question">
+                        <span>Wat kan ik ermee?</span>
+                        <span class="faq-toggle">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <div class="faq-answer-inner">
+                            Heel veel! Mensen gebruiken hun AI-assistent voor:
+                            <ul>
+                                <li>Research en samenvattingen van websites, artikelen of documenten</li>
+                                <li>Teksten schrijven: offertes, blogs, social media posts, nieuwsbrieven</li>
+                                <li>Administratie: facturen verwerken, overzichten maken</li>
+                                <li>Data-analyse: spreadsheets, rapportages, trends</li>
+                                <li>Agenda en planning: herinneringen, follow-ups</li>
+                                <li>Vertalen van teksten (meertalig)</li>
+                                <li>Brainstormen en strategie</li>
+                                <li>Bellen en voicemail afhandelen (Pro)</li>
+                            </ul>
+                            Het mooie is: je ontdekt gaandeweg wat voor jou het beste werkt.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ====== OSS NOTE ====== -->
+    <div class="container">
+        <p class="oss-note scroll-reveal">
+            Dit is open source software. Transparant, controleerbaar. 
+            Wij maken het toegankelijk voor mensen die willen ontdekken wat mogelijk is — 
+            zonder eerst een techneut te hoeven worden.
         </p>
-        <p style="margin-top: 0.5rem;">Vragen? <a href="mailto:info@getopenclaw.nl">info@getopenclaw.nl</a></p>
-        <p style="margin-top: 0.5rem; font-size: 0.8em; color: #aaa;">© 2026 GetOpenClaw.nl</p>
+    </div>
+
+    <!-- ====== FOOTER ====== -->
+    <footer class="site-footer">
+        <div class="container">
+            <div class="footer-links">
+                <a href="https://getopenclaw.nl/privacy.html">Privacy & Voorwaarden</a>
+                <span class="sep">·</span>
+                <a href="https://github.com/openclaw/openclaw">OpenClaw op GitHub</a>
+            </div>
+            <p class="footer-email">Vragen? <a href="mailto:info@getopenclaw.nl">info@getopenclaw.nl</a></p>
+            <p class="footer-copyright">© 2026 GetOpenClaw.nl</p>
+        </div>
     </footer>
 
     <script>
-        // FAQ Toggle
+        // ====== THEME TOGGLE ======
+        const toggle = document.getElementById('themeToggle');
+        const root = document.documentElement;
+        
+        function setTheme(isLight) {
+            if (isLight) {
+                root.classList.add('light');
+                toggle.textContent = '☀️';
+            } else {
+                root.classList.remove('light');
+                toggle.textContent = '🌙';
+            }
+            localStorage.setItem('theme', isLight ? 'light' : 'dark');
+        }
+        
+        // Apply saved preference or system preference
+        const savedTheme = localStorage.getItem('theme');
+        if (savedTheme === 'light' || 
+            (!savedTheme && window.matchMedia('(prefers-color-scheme: light)').matches)) {
+            setTheme(true);
+        }
+        
+        toggle.addEventListener('click', () => {
+            setTheme(!root.classList.contains('light'));
+        });
+
+        // ====== FAQ TOGGLE ======
         document.querySelectorAll('.faq-question').forEach(question => {
             question.addEventListener('click', () => {
-                const item = question.parentElement;
-                item.classList.toggle('open');
+                const item = question.closest('.faq-item');
+                const wasOpen = item.classList.contains('open');
+                
+                // Close all
+                document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
+                
+                // Toggle clicked
+                if (!wasOpen) {
+                    item.classList.add('open');
+                }
             });
         });
+
+        // ====== SCROLL REVEAL ======
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -40px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.scroll-reveal').forEach(el => {
+            observer.observe(el);
+        });
+
+        // ====== SCROLL PROGRESS BAR ======
+        const progressBar = document.getElementById('scrollProgress');
+        window.addEventListener('scroll', () => {
+            const scrollTop = window.scrollY;
+            const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+            const scrollPercent = (scrollTop / docHeight) * 100;
+            progressBar.style.width = scrollPercent + '%';
+        }, { passive: true });
     </script>
 </body>
 </html>

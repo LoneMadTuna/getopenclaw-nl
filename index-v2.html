@@ -1,0 +1,714 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-VQXTMQ3WTF"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-VQXTMQ3WTF');
+    </script>
+    
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OpenClaw Setup Service — Jouw AI-assistent, veilig opgezet</title>
+    <meta name="description" content="OpenClaw (voorheen Clawdbot) setup service. De AI-assistent die Alexander Klöpping demonstreerde bij Eva Jinek op NPO1. Wij zetten het veilig voor je op, op een virtuele server.">
+    
+    <!-- SEO Meta Tags -->
+    <meta name="keywords" content="OpenClaw, Clawdbot, AI assistent, Eva Jinek, Alexander Klöpping, NPO1, AI setup, digitale assistent, Claude AI, Anthropic">
+    <meta name="author" content="GetOpenClaw.nl">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://getopenclaw.nl/">
+    
+    <!-- Open Graph / Social -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://getopenclaw.nl/">
+    <meta property="og:title" content="OpenClaw Setup — Jouw AI-assistent, veilig opgezet">
+    <meta property="og:description" content="Wij zetten een persoonlijke AI-assistent veilig voor je op. Geen technische kennis nodig.">
+    <meta property="og:locale" content="nl_NL">
+    
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="OpenClaw Setup — Jouw AI-assistent, veilig opgezet">
+    <meta name="twitter:description" content="Wij zetten een persoonlijke AI-assistent veilig voor je op. Geen technische kennis nodig.">
+    
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Service",
+        "name": "OpenClaw Setup Service",
+        "description": "Professionele installatie van OpenClaw AI-assistent op een veilige, virtuele server.",
+        "provider": {
+            "@type": "Organization",
+            "name": "GetOpenClaw.nl",
+            "url": "https://getopenclaw.nl"
+        },
+        "areaServed": "NL",
+        "serviceType": "AI Assistant Setup"
+    }
+    </script>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+            background: #fff;
+            color: #333;
+            line-height: 1.7;
+            font-size: 1rem;
+        }
+        /* Responsive font sizing */
+        @media (min-width: 1024px) { body { font-size: 1.1rem; } }
+        @media (min-width: 1600px) { body { font-size: 1.2rem; } }
+
+        .container {
+            max-width: 680px;
+            margin: 0 auto;
+            padding: 3rem 1.5rem;
+        }
+        @media (min-width: 768px) {
+            .container {
+                max-width: 900px;
+            }
+        }
+        .badge {
+            display: inline-block;
+            background: #e8f0fe;
+            color: #3b82f6;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.9em;
+            font-weight: 500;
+            margin-bottom: 2rem;
+            letter-spacing: 0.02em;
+        }
+        h1 {
+            font-size: 2.2em;
+            font-weight: 700;
+            margin-bottom: 1.2rem;
+            color: #1a1a2e;
+            line-height: 1.3;
+        }
+        .intro {
+            font-size: 1.1em;
+            color: #555;
+            margin-bottom: 2.5rem;
+        }
+        .quote {
+            background: linear-gradient(135deg, #f5f7fa 0%, #e4e8f0 100%);
+            border-left: 4px solid #3b82f6;
+            border-radius: 0 12px 12px 0;
+            padding: 1.5rem;
+            margin: 2rem 0;
+        }
+        .quote p {
+            font-style: italic;
+            color: #333;
+            margin-bottom: 0.5rem;
+        }
+        .quote .author {
+            font-size: 0.9em;
+            color: #666;
+            font-style: normal;
+        }
+        .section {
+            margin: 2.5rem 0;
+        }
+        .section h2 {
+            font-size: 1.3em;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: #1a1a2e;
+        }
+        .section p, .faq-answer, .what-others-do li {
+            color: #555;
+            font-size: 1em;
+        }
+        .highlight-box {
+            background: linear-gradient(135deg, #e8f5e9 0%, #c8e6c9 100%);
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin: 2rem 0;
+            border: 1px solid #a5d6a7;
+        }
+        .highlight-box h3 {
+            font-size: 1.1em;
+            margin-bottom: 0.8rem;
+            color: #2e7d32;
+        }
+        .highlight-box p {
+            color: #1b5e20;
+        }
+        .signup-box {
+            background: linear-gradient(135deg, #fff 0%, #f8f9ff 100%);
+            border: 2px solid #3b82f6;
+            border-radius: 16px;
+            padding: 2rem;
+            margin: 3rem 0;
+            text-align: center;
+            box-shadow: 0 4px 20px rgba(102, 126, 234, 0.15);
+        }
+        .signup-box h2 {
+            font-size: 1.4em;
+            margin-bottom: 0.5rem;
+            color: #1a1a2e;
+        }
+        .signup-box .limited {
+            color: #666;
+            margin-bottom: 1.5rem;
+        }
+        .signup-box .limited strong {
+            color: #e53935;
+        }
+        .btn-submit {
+            display: inline-block;
+            width: 100%;
+            max-width: 400px;
+            padding: 1rem;
+            font-size: 1.05em;
+            font-weight: 600;
+            background: #3b82f6;
+            color: #fff;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: transform 0.2s, box-shadow 0.2s;
+            text-decoration: none;
+            text-align: center;
+        }
+        .btn-submit:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+        }
+        .promise {
+            font-size: 0.9em;
+            color: #888;
+            margin-top: 1rem;
+        }
+        .what-others-do {
+            background: #fff;
+            border: 1px solid #e8e8e8;
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin: 2rem 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.04);
+        }
+        .what-others-do h3 {
+            font-size: 1.1em;
+            margin-bottom: 1rem;
+            color: #1a1a2e;
+        }
+        .what-others-do ul {
+            list-style: none;
+        }
+        .what-others-do li {
+            padding: 0.5rem 0;
+            padding-left: 2rem;
+            position: relative;
+        }
+        .what-others-do li:before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: #4caf50;
+            font-weight: bold;
+        }
+        footer {
+            margin-top: 4rem;
+            padding-top: 2rem;
+            border-top: 1px solid #eee;
+            text-align: center;
+            color: #888;
+            font-size: 0.9em;
+        }
+        footer a {
+            color: #3b82f6;
+            text-decoration: none;
+        }
+        footer a:hover {
+            text-decoration: underline;
+        }
+        .faq {
+            margin: 3rem 0;
+        }
+        .faq h2 {
+            font-size: 1.5em;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            color: #1a1a2e;
+        }
+        .faq-item {
+            border-bottom: 1px solid #eee;
+            padding: 1rem 0;
+        }
+        .faq-item:last-child {
+            border-bottom: none;
+        }
+        .faq-question {
+            font-weight: 600;
+            color: #1a1a2e;
+            margin-bottom: 0.5rem;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .faq-question::after {
+            content: "+";
+            font-size: 1.2em;
+            color: #3b82f6;
+            flex-shrink: 0;
+            margin-left: 1rem;
+        }
+        .faq-item.open .faq-question::after {
+            content: "−";
+        }
+        .faq-answer {
+            line-height: 1.6;
+            display: none;
+            padding-top: 0.5rem;
+        }
+        .faq-item.open .faq-answer {
+            display: block;
+        }
+
+        /* ===== HOW IT WORKS ===== */
+        .how-it-works {
+            margin: 3rem 0;
+            text-align: center;
+        }
+        .how-it-works h2 {
+            font-size: 1.5em;
+            margin-bottom: 2rem;
+            color: #1a1a2e;
+        }
+        .steps-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+        }
+        @media (max-width: 500px) {
+            .steps-grid {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+        }
+        .step-number {
+            font-size: 2.5em;
+            color: #3b82f6;
+            margin-bottom: 0.5rem;
+        }
+        .step-title {
+            font-size: 1.2em;
+            margin-bottom: 0.5rem;
+            color: #1a1a2e;
+            font-weight: 600;
+        }
+        .step-desc {
+            color: #555;
+            font-size: 1em;
+        }
+
+        /* ===== PRICING ===== */
+        .pricing-section h2 {
+            font-size: 1.5em;
+            text-align: center;
+            margin-bottom: 2rem;
+            color: #1a1a2e;
+        }
+        .pricing-grid {
+            display: grid;
+            gap: 1.5rem;
+            grid-template-columns: 1fr;
+        }
+        @media (min-width: 768px) {
+            .pricing-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+        .pricing-card {
+            background: #fff;
+            border: 2px solid #e0e0e0;
+            border-radius: 16px;
+            padding: 1.5rem;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+        }
+        .pricing-card.popular {
+            border-color: #3b82f6;
+            position: relative;
+            box-shadow: 0 4px 20px rgba(59, 130, 246, 0.2);
+        }
+        .popular-badge {
+            position: absolute;
+            top: -12px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: #3b82f6;
+            color: #fff;
+            padding: 0.3rem 1rem;
+            border-radius: 20px;
+            font-size: 0.8em;
+            font-weight: 600;
+        }
+        .pricing-card .card-title {
+            font-size: 1.3em;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            color: #1a1a2e;
+        }
+        .pricing-card .price {
+            font-size: 2.5em;
+            font-weight: 800;
+            color: #3b82f6;
+            margin: 1rem 0;
+        }
+        .pricing-card .price span {
+            font-size: 0.4em;
+            font-weight: 400;
+            color: #666;
+        }
+        .pricing-card .subtitle {
+            font-size: 0.9em;
+            color: #666;
+            margin-bottom: 1.5rem;
+        }
+        .pricing-card ul {
+            list-style: none;
+            text-align: left;
+            margin-bottom: 1.5rem;
+            flex-grow: 1;
+        }
+        .pricing-card li {
+            padding: 0.4rem 0;
+        }
+        .pricing-card li.disabled {
+            color: #bbb;
+        }
+        .btn-card {
+            display: block;
+            width: 100%;
+            padding: 0.8rem;
+            font-size: 1em;
+            font-weight: 600;
+            border: none;
+            border-radius: 8px;
+            text-decoration: none;
+            text-align: center;
+            margin-top: auto;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        .btn-card:hover {
+            transform: translateY(-1px);
+        }
+        .btn-card-default {
+            background: #f5f5f5;
+            color: #333;
+        }
+        .btn-card-primary {
+            background: #3b82f6;
+            color: #fff;
+        }
+        .btn-card-primary:hover {
+            box-shadow: 0 4px 15px rgba(59, 130, 246, 0.3);
+        }
+        .pricing-footer {
+            text-align: center;
+            margin-top: 1.5rem;
+            color: #555;
+            line-height: 1.8;
+        }
+
+        /* ===== URGENCY BOX ===== */
+        .urgency-box {
+            background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+            border: 2px solid #f59e0b;
+            border-radius: 16px;
+            padding: 1.5rem;
+            margin: 2rem 0;
+            text-align: center;
+        }
+        .urgency-box h3 {
+            color: #92400e;
+            margin-bottom: 0.5rem;
+        }
+        .urgency-box p {
+            color: #78350f;
+        }
+
+        /* Responsive */
+        @media (max-width: 600px) {
+            h1 { font-size: 1.7em; }
+            .container { padding: 2rem 1rem; }
+        }
+        .site-title {
+            font-size: clamp(1.8rem, 8vw, 3.5rem);
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header style="background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%); padding: 2rem 1rem; text-align: center; margin-bottom: 0;">
+        <h1 class="site-title" style="font-weight: 800; color: white; margin: 0; letter-spacing: -1px; text-shadow: 2px 2px 4px rgba(0,0,0,0.2);">
+            GetOpenClaw.nl
+        </h1>
+        <p style="color: rgba(255,255,255,0.9); font-size: 1.2em; margin-top: 0.5rem;">
+            Jouw AI-assistent, veilig opgezet
+        </p>
+    </header>
+    
+    <div class="container">
+        <div class="badge">📺 Zoals recent gedemonstreerd door Alexander Klöpping bij Eva Jinek op NPO1</div>
+        
+        <h1>Je eigen digitale medewerker. Veilig opgezet, klaar om te ontdekken.</h1>
+        
+        <p class="intro">
+            Stel je voor: een assistent die taken uitvoert terwijl jij andere dingen doet. 
+            Research, teksten schrijven, data analyseren — 24/7 beschikbaar. 
+            Dat is OpenClaw. En wij zetten het veilig voor je op.
+        </p>
+
+        <div class="quote">
+            <p>"Ik zet dit op een aparte computer die geen verbinding heeft met mijn echte e-mail."</p>
+            <span class="author">— Alexander Klöpping over AI-assistenten, Eva Jinek (NPO1)</span>
+        </div>
+
+        <div class="section">
+            <h2>Precies. Daarom een virtuele server.</h2>
+            <p>
+                Wij richten een veilige werkplek voor je in. Geen toegang tot je persoonlijke computer. 
+                Geen risico's met je eigen accounts. Gewoon een plek om te ontdekken wat dit voor jou kan betekenen.
+            </p>
+        </div>
+
+        <div class="highlight-box">
+            <h3>Wij zijn de IT-afdeling voor je digitale collega</h3>
+            <p>
+                Je hoeft niets technisch te weten. Wij regelen de server, de configuratie, alles. 
+                Jij krijgt een werkende omgeving en kunt direct aan de slag.
+            </p>
+        </div>
+
+        <!-- Hoe het werkt -->
+        <div class="how-it-works">
+            <h2>Hoe het werkt</h2>
+            <div class="steps-grid">
+                <div>
+                    <div class="step-number">①</div>
+                    <div class="step-title">Aanmelden</div>
+                    <p class="step-desc">Vul het formulier in met je wensen. Wij nemen contact op om alles door te spreken.</p>
+                </div>
+                <div>
+                    <div class="step-number">②</div>
+                    <div class="step-title">Wij bouwen</div>
+                    <p class="step-desc">Binnen 48 uur staat je eigen server klaar — volledig geconfigureerd en beveiligd.</p>
+                </div>
+                <div>
+                    <div class="step-number">③</div>
+                    <div class="step-title">Jij praat</div>
+                    <p class="step-desc">Je stuurt berichten via Telegram of WhatsApp, en je AI-assistent gaat aan het werk.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="what-others-do">
+            <h3>Waar mensen het voor gebruiken:</h3>
+            <ul>
+                <li>Research en informatie verzamelen</li>
+                <li>Teksten schrijven, redigeren en vertalen</li>
+                <li>Agenda en afspraken beheren</li>
+                <li>Data analyseren en rapportages maken</li>
+                <li>Social media posts voorbereiden</li>
+                <li>Samenvattingen maken van documenten of vergaderingen</li>
+                <li>Brainstormen en ideeën uitwerken</li>
+                <li>Administratie en boekhouding ondersteunen</li>
+                <li>Website-teksten en blogs schrijven</li>
+                <li>Herinneringen en follow-ups bijhouden</li>
+            </ul>
+        </div>
+
+        <!-- Urgency Box -->
+        <div class="urgency-box">
+            <h3>Launch Aanbieding</h3>
+            <p>De eerste <strong>10 klanten</strong> krijgen gratis security hardening (t.w.v. €48) bij elk pakket.</p>
+            <p style="font-size: 0.9em; color: #92400e; margin-top: 0.5rem;">⏰ Zolang er plekken beschikbaar zijn</p>
+        </div>
+
+        <div class="signup-box">
+            <h2>Direct aan de slag?</h2>
+            <p class="limited">Vul het formulier in en we nemen binnen 24 uur contact op.<br>
+            Geen technische kennis nodig — wij regelen alles.</p>
+            
+            <a href="https://tally.so/r/7RxP0R" target="_blank" class="btn-submit">Start mijn aanvraag →</a>
+            
+            <p class="promise">✅ 14 dagen niet-goed-geld-terug garantie</p>
+        </div>
+
+        <!-- Pricing Section -->
+        <div class="pricing-section" id="prijzen">
+            <h2>Kies je pakket</h2>
+            
+            <div class="pricing-grid">
+                <!-- Basis -->
+                <div class="pricing-card">
+                    <div class="card-title">Basis</div>
+                    <div class="price">€149 <span>eenmalig</span></div>
+                    <div class="subtitle">Perfect om te starten</div>
+                    <ul>
+                        <li>✓ OpenClaw volledig geïnstalleerd</li>
+                        <li>✓ Virtuele server (VPS) ingericht</li>
+                        <li>✓ Telegram-integratie</li>
+                        <li>✓ Basis configuratie</li>
+                        <li>✓ Handleiding om te starten</li>
+                        <li class="disabled">— Security hardening</li>
+                        <li class="disabled">— Voice calling</li>
+                        <li class="disabled">— Priority support</li>
+                    </ul>
+                    <a href="https://tally.so/r/7RxP0R" class="btn-card btn-card-default">Aanvragen</a>
+                </div>
+                
+                <!-- Basis Plus -->
+                <div class="pricing-card popular">
+                    <div class="popular-badge">Populair</div>
+                    <div class="card-title">Basis Plus</div>
+                    <div class="price">€197 <span>eenmalig</span></div>
+                    <div class="subtitle">Veilig en professioneel</div>
+                    <ul>
+                        <li>✓ Alles van Basis</li>
+                        <li>✓ Security audit</li>
+                        <li>✓ Firewall configuratie</li>
+                        <li>✓ Automatische backups</li>
+                        <li>✓ Fail2ban bescherming</li>
+                        <li>✓ Email support</li>
+                        <li class="disabled">— Voice calling</li>
+                        <li class="disabled">— Custom integraties</li>
+                    </ul>
+                    <a href="https://tally.so/r/7RxP0R" class="btn-card btn-card-primary">Aanvragen</a>
+                </div>
+                
+                <!-- Pro -->
+                <div class="pricing-card">
+                    <div class="card-title">Pro</div>
+                    <div class="price">€497 <span>eenmalig</span></div>
+                    <div class="subtitle">Voor power users</div>
+                    <ul>
+                        <li>✓ Alles van Basis Plus</li>
+                        <li>✓ Voice calling setup</li>
+                        <li>✓ Meerdere chat-kanalen</li>
+                        <li>✓ Custom integratie (1x)</li>
+                        <li>✓ Priority support (30 dagen)</li>
+                        <li>✓ Updates hulp (3 maanden)</li>
+                        <li>✓ Persoonlijke onboarding</li>
+                        <li>✓ Backup monitoring dashboard</li>
+                    </ul>
+                    <a href="https://tally.so/r/7RxP0R" class="btn-card btn-card-default">Aanvragen</a>
+                </div>
+            </div>
+            
+            <div class="pricing-footer">
+                <p><strong>Maandelijkse gebruikskosten (apart, direct bij de providers):</strong></p>
+                <p>Hosting: ~€10-20 · AI-tokens: ~€20-50 · Bellen: ~€5-10</p>
+                <p>Afhankelijk van je gebruik en gekozen pakket.</p>
+                <p style="margin-top: 0.5rem;">✅ Geen verborgen kosten. Geen abonnement bij ons.</p>
+                <p>✅ 14 dagen niet-goed-geld-terug garantie op alle pakketten.</p>
+            </div>
+        </div>
+
+        <div class="faq">
+            <h2>Veelgestelde vragen</h2>
+            
+            <div class="faq-item open">
+                <div class="faq-question">Wat is OpenClaw?</div>
+                <div class="faq-answer">
+                    OpenClaw (voorheen Clawdbot) is een AI-assistent die zelfstandig taken kan uitvoeren. 
+                    Denk aan teksten schrijven, research doen, bestanden organiseren, data analyseren — terwijl jij andere dingen doet. 
+                    Het is open source software, gebouwd bovenop Claude van Anthropic.
+                </div>
+            </div>
+            
+            <div class="faq-item">
+                <div class="faq-question">Is het veilig?</div>
+                <div class="faq-answer">
+                    Wij zetten OpenClaw op een <strong>virtuele server</strong> die losstaat van je persoonlijke computer en accounts. 
+                    Precies zoals Alexander Klöpping adviseerde. Zo kun je experimenteren zonder risico voor je eigen data.
+                    De software zelf is open source — iedereen kan de code controleren.
+                </div>
+            </div>
+            
+            <div class="faq-item">
+                <div class="faq-question">Wat kost het?</div>
+                <div class="faq-answer">
+                    Wij bieden drie pakketten aan: Basis (€149), Basis Plus (€197) en Pro (€497) — eenmalige setup-kosten.
+                    Daarnaast heb je maandelijkse gebruikskosten, gemiddeld <strong>€30-80 per maand</strong>, afhankelijk van je keuze voor hosting, AI-abonnement en eventueel bel-abonnement.
+                    <br><br>
+                    <strong>Geen verborgen kosten, geen abonnement bij ons.</strong> Je betaalt de providers rechtstreeks.
+                </div>
+            </div>
+            
+            <div class="faq-item">
+                <div class="faq-question">Hoe lang duurt de setup?</div>
+                <div class="faq-answer">
+                    Meestal is je omgeving binnen <strong>24-48 uur</strong> klaar. 
+                    We regelen de server, installeren alle software, configureren alles, en geven je een werkende omgeving met instructies om te starten.
+                </div>
+            </div>
+            
+            <div class="faq-item">
+                <div class="faq-question">Heb ik technische kennis nodig?</div>
+                <div class="faq-answer">
+                    Nee. Als je kunt chatten, kun je dit gebruiken. Wij doen het technische werk — jij krijgt een simpele chat-interface om met je AI-assistent te praten via Telegram, WhatsApp of andere kanalen.
+                    <br><br>
+                    Naarmate je meer ontdekt, kun je functies toevoegen. Daar helpen we je ook bij.
+                </div>
+            </div>
+            
+            <div class="faq-item">
+                <div class="faq-question">Wat kan ik ermee?</div>
+                <div class="faq-answer">
+                    Heel veel! Mensen gebruiken hun AI-assistent voor:
+                    <ul style="margin: 0.5rem 0; padding-left: 1.2rem; list-style: disc;">
+                        <li>Research en samenvattingen van websites, artikelen of documenten</li>
+                        <li>Teksten schrijven: offertes, blogs, social media posts, nieuwsbrieven</li>
+                        <li>Administratie: facturen verwerken, overzichten maken</li>
+                        <li>Data-analyse: spreadsheets, rapportages, trends</li>
+                        <li>Agenda en planning: herinneringen, follow-ups</li>
+                        <li>Vertalen van teksten (meertalig)</li>
+                        <li>Brainstormen en strategie</li>
+                        <li>Bellen en voicemail afhandelen (Pro)</li>
+                    </ul>
+                    Het mooie is: je ontdekt gaandeweg wat voor jou het beste werkt.
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <p style="color: #777;">
+                Dit is open source software. Transparant, controleerbaar. 
+                Wij maken het toegankelijk voor mensen die willen ontdekken wat mogelijk is — 
+                zonder eerst een techneut te hoeven worden.
+            </p>
+        </div>
+    </div>
+
+    <footer>
+        <p>
+            <a href="https://getopenclaw.nl/privacy.html">Privacy & Voorwaarden</a> · 
+            <a href="https://github.com/openclaw/openclaw">OpenClaw op GitHub</a>
+        </p>
+        <p style="margin-top: 0.5rem;">Vragen? <a href="mailto:info@getopenclaw.nl">info@getopenclaw.nl</a></p>
+        <p style="margin-top: 0.5rem; font-size: 0.8em; color: #aaa;">© 2026 GetOpenClaw.nl</p>
+    </footer>
+
+    <script>
+        // FAQ Toggle
+        document.querySelectorAll('.faq-question').forEach(question => {
+            question.addEventListener('click', () => {
+                const item = question.parentElement;
+                item.classList.toggle('open');
+            });
+        });
+    </script>
+</body>
+</html>
